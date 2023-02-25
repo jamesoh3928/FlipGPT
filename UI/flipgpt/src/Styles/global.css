@@ -1,2 +1,65 @@
+:root {
+  --orange: #e7853e;
+  --white: #ffffff;
+  --black: #000000;
+}
+
+html {
+  background-color: var(--orange);
+}
+
+.app {
+  background-image: url("../../assets/images/BackgroundBricks.jpg");
+  min-height: 100vh;
+}
+
 .bg-orange {
+  background-color: var(--orange);
+}
+
+.link {
+  text-decoration: none;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.fs-45 {
+  font-size: 45px;
+}
+.fs-40 {
+  font-size: 40px;
+}
+.fs-35 {
+  font-size: 35px;
+}
+.fs-30 {
+  font-size: 30px;
+}
+.fs-25 {
+  font-size: 25px;
+}
+.fs-20 {
+  font-size: 20px;
+}
+
+.f-bold {
+  font-weight: bolder;
+}
+.f-light-bold {
+  font-weight: bold;
+}
+.f-light-regular {
+  font-weight: 500;
+}
+
+.f-orange {
+  color: var(--orange);
+}
+.f-white {
+  color: var(--white);
+}
+.f-black {
+  color: var(--black);
 }

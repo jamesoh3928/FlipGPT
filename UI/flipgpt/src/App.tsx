@@ -16,13 +16,14 @@ import Login from "./Screens/Login";
 import SignUp from "./Screens/SignUp";
 import FlashCardStudy from "./Screens/FlashCardStudy";
 import Header from "./Components/Header";
+import "./Styles/global.css";
 
 function App() {
   return (
     <div className="app">
       <Header />
       <Routes>
-        <Route path="/" element={<Navigate replace to="/home" />}></Route>
+        <Route path="/" element={<Navigate replace to="/login" />}></Route>
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
