@@ -1,8 +1,3 @@
-// const express = require('express')
-// const dotenv = require('dotenv-safe');
-// const { ChatGPTUnofficialProxyAPI } = require('chatgpt');
-// const { oraPromise } = require('ora');
-
 import express from 'express';
 import { ChatGPTUnofficialProxyAPI } from 'chatgpt';
 import { oraPromise } from 'ora';
@@ -18,41 +13,14 @@ const api = new ChatGPTUnofficialProxyAPI({
 });
 
 app.get('/', async (req, res) => {
-  const prompt = 'Write a poem about cats.';
-  const result = await oraPromise(api.sendMessage(prompt), { text: prompt });
-
-  const prompt2 = 'Can you make it cuter and shorter?';
-  const result2 = await oraPromise(
-    api.sendMessage(prompt2, { conversationId: result.conversationId, parentMessageId: result.id }),
-    { text: prompt2 }
-  );
-
-  const prompt3 = 'Now write it in French.';
-  const result3 = await oraPromise(
-    api.sendMessage(prompt3, { conversationId: result.conversationId, parentMessageId: result2.id }),
-    { text: prompt3 }
-  );
-
-  const prompt4 = 'What were we talking about again?';
-  const result4 = await oraPromise(
-    api.sendMessage(prompt4, { conversationId: result.conversationId, parentMessageId: result3.id }),
-    { text: prompt4 }
-  );
+  const generateFlashcards = "I want you to act as a flash card generator. I will type notes you will make flashcard out of from, or any topics I will study on. I want you to only respond with front of the flashcards (question), and back of the flashcards (answers). For the answer follow the format (do not printing anything else)\:\n\nQuestion: <some question>\nAnswer: <answer to question>\n\nQuestion: <some question>\nAnswer: <answer to question>\n\ncontinue...\n\nGenerate 10 flashcard each time I ask for it, and when I say \"More\", generate more flashcards with the same topics. For this request, just say \"Okay\" to confirm you understand the request.";
+  // const result = await oraPromise(api.sendMessage(prompt), { text: prompt });
+  const result = await oraPromise(api.sendMessage(generateFlashcards), { text: generateFlashcards });
 
   res.send({
-    prompt1: prompt,
-    response1: result.text,
-    prompt2: prompt2,
-    response2: result2.text,
-    prompt3: prompt3,
-    response3: result3.text,
-    prompt4: prompt4,
-    response4: result4.text,
+    response: result.text,
   });
   console.log(result.text);
-  console.log(result2.text);
-  console.log(result3.text);
-  console.log(result4.text);
 });
 
 app.listen(4000, () => {
