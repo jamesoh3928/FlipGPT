@@ -19,7 +19,6 @@ import { User } from '../Types/User';
 //   USER_API.deleteUser(user2.userName).then((user) => console.log("deleted ")); 
 /************************************/
 
-
 export class UserDatabase extends Dexie {
   // 'users' is added by dexie when declaring the stores()
   // We just tell the typing system this is the case
@@ -78,8 +77,11 @@ async function updateUser(user: User) {
 }
 
 
+let currentUser: User | null = null; 
+
+
 const USER_API = {
-    createUser, deleteUser, getUser, updateUser
+    createUser, deleteUser, getUser, updateUser, currentUser
 }
 
  
