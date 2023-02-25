@@ -24,17 +24,16 @@ function Login() {
 
     Log.log(`Sending Call`);
 
-    let response = await USER_API.createUser({
+    let response = await USER_API.login(
       userName,
-      password,
-      phoneNumber: "88888888",
-      cardSets: [],
-    });
-
+      password
+    );
     Log.log(response);
-
+    
     setLoading(false);
-    navigation("/home");
+    if(response?.success) {
+      navigation("/home");
+    }
   };
 
   /**
