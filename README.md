@@ -14,3 +14,4 @@ FlipGPT is an application that allows users to interact with ChatGPT to automate
 - Dexie
     - `npm install dexie`
     - `npm install dexie-react-hooks`
+    - `npm install twilio`
