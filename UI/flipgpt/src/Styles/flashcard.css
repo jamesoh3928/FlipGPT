@@ -1,0 +1,41 @@
+.flash-card-container {
+  padding: 15px;
+  width: 500px;
+  height: 300px;
+}
+
+.flash-card-content {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+  transition: transform 2s;
+  transform-style: preserve-3d;
+}
+
+.flipped .flash-card-content {
+  transform: rotateY(0.5turn);
+}
+
+.flash-card {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  background-color: var(--white);
+  border-radius: 30px;
+}
+
+.flash-card.front {
+  transform: translateZ(10px);
+}
+
+.flash-card.back {
+  z-index: -1;
+  transform: translateZ(-10px) rotateY(0.5turn);
+}

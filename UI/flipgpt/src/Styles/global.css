@@ -13,7 +13,7 @@ html {
 .app {
   background-image: url("../assets/images/BackgroundBricks.jpg");
   min-height: 100vh;
-  z-index: -5;
+  z-index: -10;
 }
 
 .flex {

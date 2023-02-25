@@ -27,6 +27,10 @@ const UserContext = createContext<ContextType>({
 
 export const useUserContext = () => useContext(UserContext);
 
+/**
+ * TODO: session storage of user
+ */
+
 const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
