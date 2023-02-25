@@ -47,13 +47,13 @@ async function createUser(user: User) {
     let response: LoginResponse = { success: false, errorMessage: "User created not ran.", user: undefined}; 
     try {
         let retUser = await getUser(user.userName);
-        if(retUser != undefined) {
+        if(retUser !== undefined) {
             response.success = false; 
             response.errorMessage = "Username is already taken."; 
             response.user = undefined; 
             return response; 
         }
-        let addedUser = await db.users.add(user);
+        await db.users.add(user);
         response.success = true; 
         response.errorMessage = "Create user success."; 
         response.user = user;
@@ -97,13 +97,13 @@ async function login(username: string, password: string) {
     let response: LoginResponse = { success: false, errorMessage: "Login was not run properly", user: undefined}; 
     try {
         let retUser = await getUser(username)
-        if(retUser == undefined) {
+        if(retUser === undefined) {
             response.success = false;
             response.errorMessage = "Username does not exist."; 
             response.user = undefined; 
             return response;  
         }
-        if(retUser.password != password) {
+        if(retUser.password !== password) {
             response.success = false; 
             response.errorMessage = "Password is incorrect.";
             response.user = undefined; 
@@ -123,7 +123,7 @@ let currentUser: User | null = null;
 
 
 const USER_API = {
-    createUser, deleteUser, getUser, updateUser, currentUser, login    
+    createUser, deleteUser, getUser, updateUser, currentUser, login 
 }
 
  
