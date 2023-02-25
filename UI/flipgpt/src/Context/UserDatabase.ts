@@ -93,27 +93,26 @@ async function updateUser(user: User) {
 }
 
 
-function login(username: string, password: string) {
+async function login(username: string, password: string) {
     let response: LoginResponse = { success: false, errorMessage: "Login was not run properly", user: undefined}; 
     try {
-        getUser(username).then((user) => {
-            if(user == undefined) {
-                response.success = false;
-                response.errorMessage = "Username does not exist."; 
-                response.user = undefined; 
-                return response;  
-            }
-            if(user.password != password) {
-                response.success = false; 
-                response.errorMessage = "Password is incorrect.";
-                response.user = undefined; 
-                return response; 
-            }
-            response.success = true; 
-            response.errorMessage = "Login success!"; 
-            response.user = user; 
-            currentUser = user; 
-        }); 
+        let retUser = await getUser(username)
+        if(retUser == undefined) {
+            response.success = false;
+            response.errorMessage = "Username does not exist."; 
+            response.user = undefined; 
+            return response;  
+        }
+        if(retUser.password != password) {
+            response.success = false; 
+            response.errorMessage = "Password is incorrect.";
+            response.user = undefined; 
+            return response; 
+        }
+        response.success = true; 
+        response.errorMessage = "Login success!"; 
+        response.user = retUser; 
+        currentUser = retUser; 
     } catch(error) {
         console.error("login error "+ error); 
     }
