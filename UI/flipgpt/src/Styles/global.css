@@ -1,5 +1,6 @@
 :root {
   --orange: #e7853e;
+  --dark-orange: #bd6c32;
   --white: #ffffff;
   --black: #000000;
   --purple: #c352eb;
@@ -31,6 +32,9 @@ html {
 .bg-orange {
   background-color: var(--orange);
 }
+.bg-purple {
+  background-color: var(--purple);
+}
 
 .link {
   text-decoration: none;
@@ -38,6 +42,13 @@ html {
 
 .clickable {
   cursor: pointer;
+}
+
+.width-100 {
+  width: 100%;
+}
+.height-100 {
+  height: 100%;
 }
 
 .fs-45 {
@@ -96,6 +107,25 @@ html {
 }
 .margin-25 {
   margin: 25px;
+}
+
+.margin-vertical-0 {
+  margin: 0px 0px;
+}
+.margin-vertical-5 {
+  margin: 5px 0px;
+}
+.margin-vertical-10 {
+  margin: 10px 0px;
+}
+.margin-vertical-15 {
+  margin: 15px 0px;
+}
+.margin-vertical-20 {
+  margin: 20px 0px;
+}
+.margin-vertical-25 {
+  margin: 25px 0px;
 }
 
 .padding-0 {

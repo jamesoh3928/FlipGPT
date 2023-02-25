@@ -2,12 +2,12 @@ import { Twilio } from 'twilio';
 import React, { useState, useEffect } from 'react';
 import { notDeepStrictEqual } from 'assert';
 
-const accountSid = 'ACf6ba8eb8b094cb279e8e1405ee418b9e';
-const authToken = 'b1490109ffb1985a68efc8b3ff930376';
-const twilioNumber = '18339312987';
+const accountSid = process.env.TWILIO_ACC_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const twilioNumber = process.env.TWILIO_NUMBER;
 
 export function sendNotif(phoneNumber: string, notification: string){
-    if(phoneNumber){
+    if(accountSid && authToken && twilioNumber && phoneNumber){
         const client = new Twilio(accountSid, authToken);
 
         client.messages
@@ -18,6 +18,6 @@ export function sendNotif(phoneNumber: string, notification: string){
             })
             .then((message) => console.log(message.sid));
     }else{
-        console.error("Missing phone number to send notifcation to.");
+        console.error("Missing a variable you need to send the message.");
     }
 }
