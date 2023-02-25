@@ -42,6 +42,7 @@ function Login() {
       <div className="input-boxes">
         <div className="bg-purple margin-vertical-15 width-100">
           <Input
+            color="white"
             label="Username"
             placeholder="Username"
             value={userName}
@@ -50,6 +51,7 @@ function Login() {
         </div>
         <div className="bg-purple margin-vertical-15 width-100">
           <Input
+            color="white"
             label="Password"
             placeholder="Password"
             value={password}
