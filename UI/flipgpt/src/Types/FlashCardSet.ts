@@ -1,6 +1,6 @@
 import { FlashCard } from "./FlashCard";
 
-export type FlashCardSet = {
+export interface FlashCardSet {
     username : string; 
     cards : FlashCard[]; 
 }
