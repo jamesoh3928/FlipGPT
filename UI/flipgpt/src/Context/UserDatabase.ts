@@ -113,9 +113,15 @@ async function login(username: string, password: string) {
         response.errorMessage = "Login success!"; 
         response.user = retUser; 
         currentUser = retUser; 
+        return response; 
     } catch(error) {
         console.error("login error "+ error); 
     }
+}
+
+
+function logout() {
+    currentUser = null; 
 }
 
 
@@ -123,7 +129,7 @@ let currentUser: User | null = null;
 
 
 const USER_API = {
-    createUser, deleteUser, getUser, updateUser, currentUser, login 
+    createUser, deleteUser, getUser, updateUser, currentUser, login, logout
 }
 
  
