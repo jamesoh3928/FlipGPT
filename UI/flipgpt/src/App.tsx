@@ -17,19 +17,23 @@ import SignUp from "./Screens/SignUp";
 import FlashCardStudy from "./Screens/FlashCardStudy";
 import Header from "./Components/Header";
 import "./Styles/global.css";
+import UserProvider from "./Context/UserProvider";
 
 function App() {
   return (
-    <div className="app">
-      <Header />
-      <Routes>
-        <Route path="/" element={<Navigate replace to="/login" />}></Route>
-        <Route path="/home" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/flash-card-study" element={<FlashCardStudy />} />
-      </Routes>
-    </div>
+    <UserProvider>
+      <div className="app">
+        <Header />
+
+        <Routes>
+          <Route path="/" element={<Navigate replace to="/login" />}></Route>
+          <Route path="/home" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/flash-card-study" element={<FlashCardStudy />} />
+        </Routes>
+      </div>
+    </UserProvider>
   );
 }
 

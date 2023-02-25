@@ -1,39 +1,41 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../Components/Button";
 import Input from "../Components/Input";
 import USER_API from "../Context/UserDatabase";
 import Log from "../Log";
 
 import "../Styles/login.css";
+import Images from "../assets/images/Images";
+import { useUserContext } from "../Context/UserProvider";
 
 function Login() {
+  const { user, login, onCancel } = useUserContext();
   const navigation = useNavigate();
 
   const [loading, setLoading] = useState(false);
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState("");
 
+  useEffect(() => {
+    Log.log(user);
+    if (user) navigation("/home");
+  }, [user]);
+
   /**
    * Submit the users information to the server to login
    */
   const submit = async () => {
-    console.log(`Submiting...`);
     if (!validated()) return;
     setLoading(true);
 
-    Log.log(`Sending Call`);
+    onCancel((msg) => {
+      Log.log(`Login Error: ${msg}`);
+    });
 
-    let response = await USER_API.login(
-      userName,
-      password
-    );
-    Log.log(response);
-    
+    await login({ userName, password });
+
     setLoading(false);
-    if(response?.success) {
-      navigation("/home");
-    }
   };
 
   /**
@@ -50,37 +52,51 @@ function Login() {
   };
 
   return (
-    <div className="flex flex-center flex-col login-container">
-      <div className="flex flex-center flex-col" style={{ marginTop: 20 }}>
-        <h1 className="margin-0 f-bolder fs-45 f-white">Getting Started</h1>
-        <p className="margin-10 f-bold fs-20 f-white">
-          Login or <span className="f-orange">Create Account</span>
-        </p>
-        <p className="margin-10 f-bold fs-20 f-white">{userName}</p>
+    <div>
+      <div style={{ zIndex: 0 }}>
+        <div className="floating-flash-cards bottom">
+          <img src={Images.flashCardUp} alt="flashcards" />
+        </div>
+        <div className="floating-flash-cards top">
+          <img src={Images.flashCardDown} alt="flashcards" />
+        </div>
       </div>
 
-      <div className="input-boxes">
-        <div className="margin-vertical-15 ">
-          <Input
-            color="white"
-            label="Username"
-            placeholder="Username"
-            value={userName}
-            onChange={setUserName}
-          />
-        </div>
-        <div className="margin-vertical-15 width-100">
-          <Input
-            color="white"
-            label="Password"
-            placeholder="Password"
-            value={password}
-            onChange={setPassword}
-          />
+      <div className="flex flex-center flex-col login-container">
+        <div className="flex flex-center flex-col" style={{ marginTop: 20 }}>
+          <h1 className="margin-0 f-bolder fs-45 f-white">Getting Started</h1>
+
+          <p className="margin-10 f-bold fs-20 f-white">
+            Login or{" "}
+            <Link to={"/signup"} className="link">
+              <span className="f-orange">Create Account</span>
+            </Link>
+          </p>
         </div>
 
-        <div className="margin-vertical-25 ">
-          <Button onPress={submit} text="Login" />
+        <div className="input-boxes">
+          <div className="margin-vertical-15 ">
+            <Input
+              color="white"
+              label="Username"
+              placeholder="Username"
+              value={userName}
+              onChange={setUserName}
+            />
+          </div>
+          <div className="margin-vertical-15 width-100">
+            <Input
+              color="white"
+              label="Password"
+              placeholder="Password"
+              value={password}
+              onChange={setPassword}
+            />
+          </div>
+
+          <div className="margin-vertical-25 ">
+            <Button onPress={submit} text={loading ? "Loading..." : "Login"} />
+          </div>
         </div>
       </div>
     </div>

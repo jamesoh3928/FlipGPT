@@ -11,8 +11,9 @@ html {
 }
 
 .app {
-  background-image: url("../../assets/images/BackgroundBricks.jpg");
+  background-image: url("../assets/images/BackgroundBricks.jpg");
   min-height: 100vh;
+  z-index: -5;
 }
 
 .flex {
@@ -27,6 +28,13 @@ html {
 }
 .flex-row {
   flex-direction: row;
+}
+
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
 }
 
 .bg-orange {

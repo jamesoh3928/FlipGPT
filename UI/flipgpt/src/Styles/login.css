@@ -1,5 +1,24 @@
 .login-container {
   justify-content: space-between;
+  position: relative;
+}
+
+.floating-flash-cards {
+  position: absolute;
+}
+
+.floating-flash-cards img {
+  width: 350px;
+}
+
+.floating-flash-cards.top {
+  top: 0;
+  right: 0;
+}
+
+.floating-flash-cards.bottom {
+  left: 0;
+  bottom: 0;
 }
 
 .input-boxes {

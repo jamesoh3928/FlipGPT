@@ -9,7 +9,7 @@ type Props = {
 };
 const Header: React.FC<Props> = (props) => {
   return (
-    <div className="header-container bg-orange">
+    <div className="header-container relative bg-orange">
       <Link className="link" to={"/"}>
         <h1 className="clickable f-45 f-bold f-white">FlipGPT</h1>
       </Link>
