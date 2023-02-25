@@ -24,7 +24,8 @@ export class UserDatabase extends Dexie {
 
 
 export const db = new UserDatabase();
-export async function addUser(user:User) {
+
+async function addUser(user:User) {
     try {
         await db.users.add(user); 
 
