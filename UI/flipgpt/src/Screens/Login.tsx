@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../Components/Button";
 import Input from "../Components/Input";
+import USER_API from "../Context/UserDatabase";
+import Log from "../Log";
 
 import "../Styles/login.css";
 
 function Login() {
+  const navigation = useNavigate();
+
   const [loading, setLoading] = useState(false);
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState("");
@@ -12,8 +17,24 @@ function Login() {
   /**
    * Submit the users information to the server to login
    */
-  const submit = () => {
+  const submit = async () => {
+    console.log(`Submiting...`);
     if (!validated()) return;
+    setLoading(true);
+
+    Log.log(`Sending Call`);
+
+    let response = await USER_API.createUser({
+      userName,
+      password,
+      phoneNumber: "88888888",
+      cardSets: [],
+    });
+
+    Log.log(response);
+
+    setLoading(false);
+    navigation("/home");
   };
 
   /**
@@ -40,23 +61,28 @@ function Login() {
       </div>
 
       <div className="input-boxes">
-        <div className="bg-purple margin-vertical-15 width-100">
+        <div className="margin-vertical-15 ">
           <Input
+            color="white"
             label="Username"
             placeholder="Username"
             value={userName}
             onChange={setUserName}
           />
         </div>
-        <div className="bg-purple margin-vertical-15 width-100">
+        <div className="margin-vertical-15 width-100">
           <Input
+            color="white"
             label="Password"
             placeholder="Password"
             value={password}
             onChange={setPassword}
           />
         </div>
-        <Button text="Login" />
+
+        <div className="margin-vertical-25 ">
+          <Button onPress={submit} text="Login" />
+        </div>
       </div>
     </div>
   );

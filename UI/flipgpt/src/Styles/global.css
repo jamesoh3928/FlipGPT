@@ -35,6 +35,12 @@ html {
 .bg-purple {
   background-color: var(--purple);
 }
+.bg-yellow {
+  background-color: yellow;
+}
+.bg-green {
+  background-color: green;
+}
 
 .link {
   text-decoration: none;
