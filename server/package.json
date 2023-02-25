@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "FlipGPT server",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamesoh3928/FlipGPT.git"
+  },
+  "author": "James OH",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamesoh3928/FlipGPT/issues"
+  },
+  "homepage": "https://github.com/jamesoh3928/FlipGPT#readme"
+}
