@@ -15,10 +15,12 @@ import Home from "./Screens/Home";
 import Login from "./Screens/Login";
 import SignUp from "./Screens/SignUp";
 import FlashCardStudy from "./Screens/FlashCardStudy";
+import Header from "./Components/Header";
 
 function App() {
   return (
     <div className="app">
+      <Header />
       <Routes>
         <Route path="/" element={<Navigate replace to="/home" />}></Route>
         <Route path="/home" element={<Home />} />
