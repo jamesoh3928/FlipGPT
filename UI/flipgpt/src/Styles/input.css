@@ -15,7 +15,7 @@ login-container {
 
 .input-input {
     height: 2em; 
-    width: auto; 
+    width: 100%; 
     padding: 0.5em;
     border: none; 
     border-radius: 10px; 

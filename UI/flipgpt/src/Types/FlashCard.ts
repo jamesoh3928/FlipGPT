@@ -1,4 +1,4 @@
-export type FlashCard = {
+export interface FlashCard {
     front : string; 
     back : string; 
     history : boolean[]; 

@@ -1,5 +1,7 @@
 import Dexie, { Table } from 'dexie';
 import { User } from '../Types/User';
+import { LoginResponse } from '../Types/LoginResponse';
+import { response } from 'express';
 
 /*************EXAMPLE USAGE***************/
 // import USER_API from './Context/UserDatabase';
@@ -42,8 +44,22 @@ export class UserDatabase extends Dexie {
 export const db = new UserDatabase();
 
 async function createUser(user: User) {
+    let response: LoginResponse = { success: false, errorMessage: "User created not ran.", user: undefined}; 
     try {
-        return await db.users.add(user); 
+        let retUser = await getUser(user.userName);
+        if(retUser != undefined) {
+            response.success = false; 
+            response.errorMessage = "Username is already taken."; 
+            response.user = undefined; 
+            return response; 
+        }
+        let addedUser = await db.users.add(user);
+        response.success = true; 
+        response.errorMessage = "Create user success."; 
+        response.user = user;
+        currentUser = user; 
+        return response;  
+
     } catch(error) {
         console.error("add user error "+error); 
     }
@@ -77,11 +93,38 @@ async function updateUser(user: User) {
 }
 
 
+function login(username: string, password: string) {
+    let response: LoginResponse = { success: false, errorMessage: "Login was not run properly", user: undefined}; 
+    try {
+        getUser(username).then((user) => {
+            if(user == undefined) {
+                response.success = false;
+                response.errorMessage = "Username does not exist."; 
+                response.user = undefined; 
+                return response;  
+            }
+            if(user.password != password) {
+                response.success = false; 
+                response.errorMessage = "Password is incorrect.";
+                response.user = undefined; 
+                return response; 
+            }
+            response.success = true; 
+            response.errorMessage = "Login success!"; 
+            response.user = user; 
+            currentUser = user; 
+        }); 
+    } catch(error) {
+        console.error("login error "+ error); 
+    }
+}
+
+
 let currentUser: User | null = null; 
 
 
 const USER_API = {
-    createUser, deleteUser, getUser, updateUser, currentUser
+    createUser, deleteUser, getUser, updateUser, currentUser, login    
 }
 
  
