@@ -17,6 +17,7 @@ import SignUp from "./Screens/SignUp";
 import FlashCardStudy from "./Screens/FlashCardStudy";
 import Header from "./Components/Header";
 import "./Styles/global.css";
+import TWILIO_API from "./Context/TwilioAPI";
 import UserProvider from "./Context/UserProvider";
 
 function App() {

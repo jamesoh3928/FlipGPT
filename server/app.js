@@ -2,11 +2,15 @@ import express from 'express';
 import { ChatGPTUnofficialProxyAPI } from 'chatgpt';
 import { oraPromise } from 'ora';
 import dotenv from 'dotenv-safe';
+import  Twilio  from 'twilio';
+import cors from 'cors'; 
+// import { Twilio } from 'twilio';
 
 dotenv.config();
 
 const app = express();
-
+// var cors = require('cors');
+app.use(cors());
 app.use(express.json());
 
 const api = new ChatGPTUnofficialProxyAPI({
@@ -28,6 +32,7 @@ const api = new ChatGPTUnofficialProxyAPI({
 // });
 
 // app.get('/topic', async (req, res) => {
+//   console.log("dfd");
 //   const generateFlashcards = "I want you to act as a flash card generator. I will type notes you will make flashcard out of from, or any topics I will study on. I want you to only respond with front of the flashcards (question), and back of the flashcards (answers). Make sure you don't pring anything else. For the answer follow the format (do not printing anything else)\:\n\nQuestion: <some question>\nAnswer: <answer to question>\n\nQuestion: <some question>\nAnswer: <answer to question>\n\ncontinue...\n\nGenerate 10 flashcard each time I ask for it, and when I say \"More\", generate more flashcards with the same topics. For this request, just say \"Okay\" to confirm you understand the request.";
 //   let result = await oraPromise(api.sendMessage(generateFlashcards), { text: generateFlashcards });
 
@@ -103,6 +108,39 @@ app.post('/topic', async (req, res) => {
 
 // TODO: 
 // CURL example: curl -i -X POST -H 'Content-Type: application/json' -d '{"prompt": "operating system"}' http://localhost:4000/topic
+
+// var corsOptions = {
+//   origin: 'http://localhost:3000/',
+//   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+// }
+// http request 
+
+app.post('/sendNotification', async (req, res) => {
+  console.log('notification sending'); 
+  let message = req.body.message;
+  let phoneNum = req.body.phoneNumber; 
+  console.log('message'+ message); 
+  console.log('phoneNum'+ phoneNum); 
+
+
+
+  let sid = process.env.TWILIO_SID;
+  let auth_token = process.env.TWILIO_AUTH_TOKEN;
+
+  console.log(sid);
+  console.log(auth_token);
+
+  let client = new Twilio(sid, auth_token); 
+  client.messages.create({ 
+    from: 18339312987,
+    to: phoneNum, 
+    body: message
+  }); 
+  res.send({ 
+    post: "success"
+  }); 
+});
+
 
 app.listen(4000, () => {
   console.log('Server started on port 4000');
