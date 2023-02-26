@@ -27,12 +27,12 @@ const api = new ChatGPTUnofficialProxyAPI({
 // initial load of the users from json
 user_file_dao.readJson();
 
-app.use((req, res, next) => {
-  console.log(`Server gets request to -`);
-  console.log(req.url);
-  console.log();
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log(`Server gets request to -`);
+//   console.log(req.url);
+//   console.log();
+//   next();
+// });
 
 app.get("/user/exists/:username", async (req, res) => {
   let username = req.params.username;
@@ -70,8 +70,8 @@ app.post("/user", async (req, res) => {
 card_set_file_dao.readJson();
 
 // use body of {"setId": "string"}
-app.put("/cardSets", async (req, res) => {
-  let id = req.body.setId;
+app.put("/cardSets/lastDate/:id", async (req, res) => {
+  let id = req.params.id;
   res.send(JSON.stringify(card_set_file_dao.updateLastDate(id)));
 });
 
@@ -81,19 +81,20 @@ app.get("/cardSets/:username", async (req, res) => {
 });
 
 
-app.get("/cardSets/withSetId/:setId", async (req, res) => {
+app.get("/cardSets/:setId", async (req, res) => {
   let setid = req.params.setId;
-  let cardset = card_set_file_dao.getCardSet(setid); 
-  console.log(cardset); 
+  let cardset = card_set_file_dao.getCardSet(setid);
+  console.log(cardset);
   res.send(JSON.stringify(cardset));
 });
 
+// TODO: this is not working right now, and not needed
 // use body of full cardSet
-app.post("/cardSets", async (req, res) => {
-  let cardSet = req.body;
-  let created = card_set_file_dao.createCardSet(cardSet);
-  res.send(JSON.stringify(created));
-});
+// app.post("/cardSets", async (req, res) => {
+//   let cardSet = req.body;
+//   let created = card_set_file_dao.createCardSet(cardSet);
+//   res.send(JSON.stringify(created));
+// });
 
 // // // // // // // // // // // // // // // // // //
 // ChatGPT interaction handling
@@ -162,8 +163,9 @@ app.post("/cardSets", async (req, res) => {
 // });
 
 app.post("/topic", async (req, res) => {
-  let data = req.body;
-  let prompt = `Topic: ${data.prompt}`;
+  let username = req.body.username;
+  let topic = req.body.prompt;
+  let prompt = `Topic: ${topic}`;
 
   const generateFlashcards =
     'I want you to act as a flash card generator. I will type notes you will make flashcard out of from, or any topics I will study on. I want you to only respond with front of the flashcards (question), and back of the flashcards (answers). Make sure you don\'t pring anything else even before and after the list. For the answer follow the format (do not printing anything else):\n\nQuestion: <some question>\nAnswer: <answer to question>\n\nQuestion: <some question>\nAnswer: <answer to question>\n\ncontinue...\n\nGenerate 10 flashcard each time I ask for it, and when I say "More", generate more flashcards with the same topics. For this request, just say "Okay" to confirm you understand the request.';
@@ -180,26 +182,34 @@ app.post("/topic", async (req, res) => {
   );
 
   // Parse result.text into json format of array of flashcard ({flashcards: [{front:"", back:""}, ...]}){front:"", back:""}]})
-  const flashcards = result.text
+  const cards = result.text
     .split("\n\n")
     .filter((flashcard) => {
       flashcard.startsWith("Question");
     })
     .map((flashcard) => {
       const [front, back] = flashcard.split("\n");
-      return { front: front.substring(10), back: back.substring(8) };
+      return { front: front.substring(10), back: back.substring(8), history: [] };
     });
 
+  // TODO: the function is not working right now 
+  const setId = card_set_file_dao.createCardSet(cards, username);
   res.send({
-    title: data.prompt,
-    flashcards,
+    setId,
   });
+
+  // TODO delete
+  // res.send({
+  //   title: data.prompt,
+  //   cards,
+  // });
   console.log(result);
 });
 
 app.post("/notes", async (req, res) => {
-  let data = req.body;
-  let prompt = `My notes: ${data.prompt}`;
+  let username = req.body.username;
+  let notes = req.body.prompt;
+  let prompt = `My notes: ${notes}`;
 
   const generateFlashcards =
     'I want you to act as a flash card generator. I will type notes you will make flashcard out of from, or any topics I will study on. I want you to only respond with front of the flashcards (question), and back of the flashcards (answers). Make sure you don\'t pring anything else even before and after the lists. For the answer follow the format (do not printing anything else):\n\nQuestion: <some question>\nAnswer: <answer to question>\n\nQuestion: <some question>\nAnswer: <answer to question>\n\ncontinue...\n\nGenerate 10 flashcard each time I ask for it, and when I say "More", generate more flashcards with the same topics. For this request, just say "Okay" to confirm you understand the request.';
@@ -216,7 +226,7 @@ app.post("/notes", async (req, res) => {
   );
 
   // Parse result.text into json format of array of flashcard ({flashcards: [{front:"", back:""}, ...]}){front:"", back:""}]})
-  const flashcards = result.text
+  const cards = result.text
     .split("\n\n")
     .filter((flashcard) => {
       return flashcard.startsWith("Question");
@@ -225,17 +235,23 @@ app.post("/notes", async (req, res) => {
       const [front, back] = flashcard.split("\n");
       return { front: front.substring(10), back: back.substring(8) };
     });
-  console.log(flashcards);
+  console.log(cards);
 
+  // res.send({
+  //   title: "Notes",
+  //   flashcards,
+  // });
+
+  // TODO: the function is not working right now 
+  const setId = card_set_file_dao.createCardSet(cardSet);
   res.send({
-    title: "Notes",
-    flashcards,
+    setId,
   });
   console.log(result);
 });
 
 // TODO:
-// CURL example: curl -i -X POST -H 'Content-Type: application/json' -d '{"prompt": "operating system"}' http://localhost:4000/topic
+// CURL example: curl -i -X POST -H 'Content-Type: application/json' -d '{"prompt": "operating system", "username": "ben"}' http://localhost:4000/topic
 // curl -i -X POST -H 'Content-Type: application/json' -d '{"prompt": "Control unit of CPU directs operation, what to do, with what data, when to do it\nGive the definition of assembler and ISA\nDatapath stores users data and moved program data\nAssembly instruction in translated by assembler into machine code in a 1 to 1 fashion\nPseudo-instruction is translated by the assembler into one or more lines of machine code\nISA is an abstraction from hardware to low level software\nmemorize the fields of instruction formats"}' http://localhost:4000/notes
 // Delete some of console.log
 

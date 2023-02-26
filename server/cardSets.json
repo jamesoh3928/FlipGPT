@@ -1,6 +1,6 @@
 [
     {
-        "setId": 12345,
+        "setId": 1,
         "title": "Spanish Vocabulary",
         "username": "ben",
         "cards": [
@@ -23,7 +23,7 @@
         "dateLastTaken": "2022-10-01T13:15:30.000Z"
     }, 
     {
-        "setId": 98765,
+        "setId": 2,
         "title": "Math Flashcards",
         "username": "janedoe",
         "cards": [

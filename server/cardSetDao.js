@@ -56,13 +56,36 @@ function updateLastDate(cardSetId) {
 }
 
 
-// create the card set 
-function createCardSet(cardSet) {
+// create the card set and return the id of new set
+function createCardSet(cards, username) {
+    if (!checkCardsetNumber(username)) {
+        return null; 
+    }
+    let setId = getUniqueId()
+    let cardSet = {
+        setId,
+        username: username,
+        cards,
+    }
     cardSetCache.push(cardSet); 
     writeJson(); 
-    return cardSet; 
+    return setId; 
 }
 
+
+function checkCardsetNumber(username) {
+    let count = 0; 
+    for(let i = 0; i < cardSetCache.length; i++) {
+        if(cardSetCache[i].username == username) {
+            count++; 
+        }
+    }
+    return count < 3;
+}
+
+function getUniqueId() {
+    return newId = cardSetCache[cardSetCache.length - 1].setId + 1;
+}
 
 // TODO
 // delete the card set
