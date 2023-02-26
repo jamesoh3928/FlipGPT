@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Images from "../assets/images/Images";
 import { useUserContext } from "../Context/UserProvider";
 
 import "../Styles/header.css";
@@ -13,9 +14,17 @@ const Header: React.FC<Props> = (props) => {
   const { user, signOut } = useUserContext();
   return (
     <div className="flex header-container relative bg-orange">
-      <Link className="link" to={"/"}>
-        <h1 className="clickable f-45 f-bold f-white">FlipGPT</h1>
-      </Link>
+      <div className="relative">
+        <div className="logo absolute">
+          <img src={Images.logo} alt="logo" />
+        </div>
+        <Link style={{ zIndex: 1 }} className="relative link" to={"/"}>
+          <h1 id="brand" className="clickable f-45 f-bold f-white">
+            FlipGPT
+          </h1>
+        </Link>
+      </div>
+
       {user ? (
         <div
           style={{ marginLeft: "auto", marginRight: 50 }}

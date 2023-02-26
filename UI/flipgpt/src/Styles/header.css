@@ -5,3 +5,21 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.logo {
+  width: 100%;
+  height: 100%;
+  top: -25px;
+  z-index: 0;
+}
+
+#brand {
+  /* border: 1px solid black; */
+  text-shadow: 2px 0 black, -2px 0 black, 0 2px black, 0 -2px black,
+    1px 1px black, -1px -1px black, 1px -1px black, -1px 1px black;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+}
