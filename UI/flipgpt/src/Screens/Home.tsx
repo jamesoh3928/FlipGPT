@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import FlashCard from "../Components/FlashCard";
 import Input from "../Components/Input";
 import { GPTopics } from "../Types/GPTopics";
 
@@ -9,9 +8,9 @@ import Icons from "../Components/Icons";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../Context/UserProvider";
 import DropDown from "../Components/DropDown";
-import { validateBody } from "twilio/lib/webhooks/webhooks";
 import CHATGPT_API from "../Context/ChatGptAPI";
 import Log from "../Log";
+import { FlashCard } from "../Types/FlashCard";
 
 const TOPICS: GPTopics[] = ["Notes", "Topic"];
 
@@ -34,12 +33,17 @@ const Home = () => {
     if (!validate()) return;
     setLoading(true);
 
-    let response = await CHATGPT_API.generateFlashcardNotes(input);
+    let response: { flashCards: FlashCard[] } | undefined = undefined;
+
+    if (selectedTopic == "Topic") {
+      response = await CHATGPT_API.generateFlashcardTopic(input);
+    } else {
+      response = await CHATGPT_API.generateFlashcardNotes(input);
+    }
+
+    // let response = await CHATGPT_API.generateFlashcardNotes(input);
 
     if (!response) return setLoading(false);
-
-    Log.log(`Response`, false);
-    Log.log(response);
 
     setLoading(false);
   };
@@ -70,7 +74,15 @@ const Home = () => {
    * Go to flashcard
    */
   const goToFlashCard = () => {
-    navigation("/flash-card-study", {state: {studyTopic: "Example Topic", cards: [{front: "front1", back: "back1"}, {front: "front2", back:"back2"}]}});
+    navigation("/flash-card-study", {
+      state: {
+        studyTopic: "Example Topic",
+        cards: [
+          { front: "front1", back: "back1" },
+          { front: "front2", back: "back2" },
+        ],
+      },
+    });
   };
 
   return (
