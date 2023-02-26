@@ -37,9 +37,9 @@ const Home = () => {
     let response: { flashCards: FlashCard[] } | undefined = undefined;
 
     if (selectedTopic == "Topic") {
-      response = await CHATGPT_API.generateFlashcardTopic(input);
+      response = await CHATGPT_API.generateFlashcardTopic(input, user.userName);
     } else {
-      response = await CHATGPT_API.generateFlashcardNotes(input);
+      response = await CHATGPT_API.generateFlashcardNotes(input, user.userName);
     }
 
     if (!response) return setLoading(false);

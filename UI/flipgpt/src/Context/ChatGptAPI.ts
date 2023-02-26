@@ -1,10 +1,11 @@
 import Log from "../Log";
+import API from "../Types/API";
 
 // TODO test the functions
-async function generateFlashcardTopic(topic: string) {
+async function generateFlashcardTopic(topic: string, username: string) {
   console.log("generating flashcard for the topic");
   try {
-    const response = await fetch("http://localhost:4000/topic", {
+    const response = await fetch(API + "topic", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -12,6 +13,7 @@ async function generateFlashcardTopic(topic: string) {
       },
       body: JSON.stringify({
         prompt: topic,
+        username,
       }),
     });
     // TODO delete
@@ -23,10 +25,10 @@ async function generateFlashcardTopic(topic: string) {
   }
 }
 
-async function generateFlashcardNotes(notes: string) {
+async function generateFlashcardNotes(notes: string, username: string) {
   console.log("generating flashcard for the notes");
   try {
-    const response = await fetch("http://localhost:4000/notes", {
+    const response = await fetch(API + "notes", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -34,6 +36,7 @@ async function generateFlashcardNotes(notes: string) {
       },
       body: JSON.stringify({
         prompt: notes,
+        username,
       }),
     });
     // TODO delete

@@ -30,7 +30,7 @@ export const AllFlashCards = () => {
           <div>
             <div style={{ height: "200px" }}></div>
             <p className="f-white fs-25 f-bold">No Study Sets Found</p>
-            <Link to={"/home"}>
+            <Link className="link" to={"/home"}>
               <Button text="Create New Set" />
             </Link>
           </div>

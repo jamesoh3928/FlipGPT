@@ -176,7 +176,7 @@ app.post("/topic", async (req, res) => {
   const cards = result.text
     .split("\n\n")
     .filter((flashcard) => {
-      flashcard.startsWith("Question");
+      return flashcard.startsWith("Question");
     })
     .map((flashcard) => {
       const [front, back] = flashcard.split("\n");

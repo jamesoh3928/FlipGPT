@@ -17,8 +17,15 @@ const Header: React.FC<Props> = (props) => {
         <h1 className="clickable f-45 f-bold f-white">FlipGPT</h1>
       </Link>
       {user ? (
-        <div style={{ marginLeft: "auto", marginRight: 50 }}>
-          <Link to={"/user/:id/cards"} className="clickable">
+        <div
+          style={{ marginLeft: "auto", marginRight: 50 }}
+          className="flex flex-row"
+        >
+          <Link
+            to={"/user/:id/cards"}
+            className="clickable"
+            style={{ marginRight: "25px" }}
+          >
             <Icons size={35} name="user" />
           </Link>
           <div onClick={signOut} className="clickable">

@@ -1,1 +1,136 @@
-[{"setId":1,"title":"Spanish Vocabulary","username":"ben","cards":[{"front":"hola","back":"hello","history":[true,false,true,true,true]},{"front":"adiós","back":"goodbye","history":[false,false,true,true,false]},{"front":"gracias","back":"thank you","history":[true,true,true,false,true]}],"dateLastTaken":"2022-10-01T13:15:30.000Z"},{"setId":2,"title":"Math Flashcards","username":"janedoe","cards":[{"front":"What is 2+2?","back":"4","history":[true,true,true,false,true]},{"front":"What is 8*6?","back":"48","history":[true,true,false,true,true]},{"front":"What is the square root of 64?","back":"8","history":[true,true,true,true,true]}],"dateLastTaken":"2022-11-15T10:30:00.000Z"},{"setId":3,"username":"ben","cards":[]},{"setId":4,"username":"ben","cards":[{"front":"What is the definition of an assembler?","back":"An assembler is a program that translates assembly language code into machine code."},{"front":"What is the definition of ISA?","back":"ISA stands for Instruction Set Architecture, which is an abstraction of a computer's hardware to low-level software."},{"front":"What is a datapath used for?","back":"A datapath is used to store user's data and move program data."},{"front":"How is an assembly instruction translated into machine code?","back":"An assembly instruction is translated by the assembler into machine code in a 1-to-1 fashion."},{"front":"What is a pseudo-instruction?","back":"A pseudo-instruction is an instruction in assembly language that is translated by the assembler into one or more lines of machine code."},{"front":"What are the fields of instruction formats?","back":"The fields of instruction formats are:"}]}]
+[
+  {
+    "setId": 1,
+    "title": "Spanish Vocabulary",
+    "username": "ben",
+    "cards": [
+      {
+        "front": "hola",
+        "back": "hello",
+        "history": [true, false, true, true, true]
+      },
+      {
+        "front": "adiós",
+        "back": "goodbye",
+        "history": [false, false, true, true, false]
+      },
+      {
+        "front": "gracias",
+        "back": "thank you",
+        "history": [true, true, true, false, true]
+      }
+    ],
+    "dateLastTaken": "2022-10-01T13:15:30.000Z"
+  },
+  {
+    "setId": 2,
+    "title": "Math Flashcards",
+    "username": "janedoe",
+    "cards": [
+      {
+        "front": "What is 2+2?",
+        "back": "4",
+        "history": [true, true, true, false, true]
+      },
+      {
+        "front": "What is 8*6?",
+        "back": "48",
+        "history": [true, true, false, true, true]
+      },
+      {
+        "front": "What is the square root of 64?",
+        "back": "8",
+        "history": [true, true, true, true, true]
+      }
+    ],
+    "dateLastTaken": "2022-11-15T10:30:00.000Z"
+  },
+  { "setId": 3, "username": "ben", "cards": [] },
+  {
+    "setId": 4,
+    "username": "ben",
+    "cards": [
+      {
+        "front": "What is the definition of an assembler?",
+        "back": "An assembler is a program that translates assembly language code into machine code."
+      },
+      {
+        "front": "What is the definition of ISA?",
+        "back": "ISA stands for Instruction Set Architecture, which is an abstraction of a computer's hardware to low-level software."
+      },
+      {
+        "front": "What is a datapath used for?",
+        "back": "A datapath is used to store user's data and move program data."
+      },
+      {
+        "front": "How is an assembly instruction translated into machine code?",
+        "back": "An assembly instruction is translated by the assembler into machine code in a 1-to-1 fashion."
+      },
+      {
+        "front": "What is a pseudo-instruction?",
+        "back": "A pseudo-instruction is an instruction in assembly language that is translated by the assembler into one or more lines of machine code."
+      },
+      {
+        "front": "What are the fields of instruction formats?",
+        "back": "The fields of instruction formats are:"
+      }
+    ]
+  },
+  { "setId": 5, "username": "CTB", "cards": [] },
+  {
+    "setId": 6,
+    "username": "CTB",
+    "cards": [
+      {
+        "front": "What is the Russian Sleep Experiment?",
+        "back": "The Russian Sleep Experiment is an urban legend about a supposed experiment conducted by Russian scientists in the late 1940s in which five people were kept awake for fifteen days straight.",
+        "history": []
+      },
+      {
+        "front": "Who were the subjects of the Russian Sleep Experiment?",
+        "back": "The subjects of the Russian Sleep Experiment were five political prisoners.",
+        "history": []
+      },
+      {
+        "front": "How long were the subjects kept awake in the Russian Sleep Experiment?",
+        "back": "The subjects of the Russian Sleep Experiment were kept awake for fifteen days straight.",
+        "history": []
+      },
+      {
+        "front": "What happened to the subjects of the Russian Sleep Experiment?",
+        "back": "According to the urban legend, the subjects of the Russian Sleep Experiment suffered from extreme sleep deprivation and became increasingly unstable, eventually resorting to violence and self-mutilation.",
+        "history": []
+      },
+      {
+        "front": "Is the Russian Sleep Experiment a true story?",
+        "back": "The Russian Sleep Experiment is not a true story, but rather an urban legend that has been circulating on the internet since the early 2010s.",
+        "history": []
+      },
+      {
+        "front": "What is the origin of the Russian Sleep Experiment?",
+        "back": "The origin of the Russian Sleep Experiment is unknown, but it is believed to have been created as a work of fiction and later spread online as an internet hoax.",
+        "history": []
+      },
+      {
+        "front": "What are some of the common themes in the stories surrounding the Russian Sleep Experiment?",
+        "back": "Some common themes in the stories surrounding the Russian Sleep Experiment include government conspiracies, unethical scientific experiments, and the consequences of sleep deprivation.",
+        "history": []
+      },
+      {
+        "front": "Has anyone ever attempted to recreate the Russian Sleep Experiment?",
+        "back": "As far as is known, no one has ever attempted to recreate the Russian Sleep Experiment, as it is both scientifically unethical and inhumane.",
+        "history": []
+      },
+      {
+        "front": "What is the purpose of sleep?",
+        "back": "The purpose of sleep is not fully understood, but it is believed to be important for the consolidation of memories, the restoration of the body, and the regulation of various physiological processes.",
+        "history": []
+      },
+      {
+        "front": "What are some of the consequences of prolonged sleep deprivation?",
+        "back": "Prolonged sleep deprivation can lead to a range of negative consequences, including cognitive impairment, emotional instability, and physical symptoms such as headaches and tremors.",
+        "history": []
+      }
+    ]
+  }
+]
