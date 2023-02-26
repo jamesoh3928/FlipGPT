@@ -2,8 +2,8 @@ import express from 'express';
 import { ChatGPTUnofficialProxyAPI } from 'chatgpt';
 import { oraPromise } from 'ora';
 import dotenv from 'dotenv-safe';
-import  Twilio  from 'twilio';
-import cors from 'cors'; 
+import Twilio from 'twilio';
+import cors from 'cors';
 // import { Twilio } from 'twilio';
 
 dotenv.config();
@@ -82,10 +82,9 @@ const api = new ChatGPTUnofficialProxyAPI({
 
 app.post('/topic', async (req, res) => {
   let data = req.body;
-  let prompt = data.prompt;
-  console.log(req);
+  let prompt = `Topic: ${data.prompt}`;
 
-  const generateFlashcards = "I want you to act as a flash card generator. I will type notes you will make flashcard out of from, or any topics I will study on. I want you to only respond with front of the flashcards (question), and back of the flashcards (answers). Make sure you don't pring anything else. For the answer follow the format (do not printing anything else)\:\n\nQuestion: <some question>\nAnswer: <answer to question>\n\nQuestion: <some question>\nAnswer: <answer to question>\n\ncontinue...\n\nGenerate 10 flashcard each time I ask for it, and when I say \"More\", generate more flashcards with the same topics. For this request, just say \"Okay\" to confirm you understand the request.";
+  const generateFlashcards = "I want you to act as a flash card generator. I will type notes you will make flashcard out of from, or any topics I will study on. I want you to only respond with front of the flashcards (question), and back of the flashcards (answers). Make sure you don't pring anything else even before and after the list. For the answer follow the format (do not printing anything else)\:\n\nQuestion: <some question>\nAnswer: <answer to question>\n\nQuestion: <some question>\nAnswer: <answer to question>\n\ncontinue...\n\nGenerate 10 flashcard each time I ask for it, and when I say \"More\", generate more flashcards with the same topics. For this request, just say \"Okay\" to confirm you understand the request.";
   let result = await oraPromise(api.sendMessage(generateFlashcards), { text: generateFlashcards });
 
   result = await oraPromise(api.sendMessage(prompt, {
@@ -94,7 +93,7 @@ app.post('/topic', async (req, res) => {
   }), { text: prompt });
 
   // Parse result.text into json format of array of flashcard ({flashcards: [{front:"", back:""}, ...]}){front:"", back:""}]})
-  const flashcards = result.text.split("\n\n").map((flashcard) => {
+  const flashcards = result.text.split("\n\n").filter((flashcard) => { flashcard.startsWith('Question') }).map((flashcard) => {
     const [front, back] = flashcard.split("\n");
     return { front: front.substring(10), back: back.substring(8) };
   });
@@ -102,12 +101,37 @@ app.post('/topic', async (req, res) => {
   res.send({
     flashcards,
   });
-  console.log(result.text);
   console.log(result);
-})
+});
+
+app.post('/notes', async (req, res) => {
+  let data = req.body;
+  let prompt = `My notes: ${data.prompt}`;
+
+  const generateFlashcards = "I want you to act as a flash card generator. I will type notes you will make flashcard out of from, or any topics I will study on. I want you to only respond with front of the flashcards (question), and back of the flashcards (answers). Make sure you don't pring anything else even before and after the lists. For the answer follow the format (do not printing anything else)\:\n\nQuestion: <some question>\nAnswer: <answer to question>\n\nQuestion: <some question>\nAnswer: <answer to question>\n\ncontinue...\n\nGenerate 10 flashcard each time I ask for it, and when I say \"More\", generate more flashcards with the same topics. For this request, just say \"Okay\" to confirm you understand the request.";
+  let result = await oraPromise(api.sendMessage(generateFlashcards), { text: generateFlashcards });
+
+  result = await oraPromise(api.sendMessage(prompt, {
+    conversationId: result.conversationId,
+    parentMessageId: result.id
+  }), { text: prompt });
+
+  // Parse result.text into json format of array of flashcard ({flashcards: [{front:"", back:""}, ...]}){front:"", back:""}]})
+  const flashcards = result.text.split("\n\n").filter((flashcard) => { flashcard.startsWith('Question') }).map((flashcard) => {
+    const [front, back] = flashcard.split("\n");
+    return { front: front.substring(10), back: back.substring(8) };
+  });
+
+  res.send({
+    flashcards,
+  });
+  console.log(result);
+});
 
 // TODO: 
 // CURL example: curl -i -X POST -H 'Content-Type: application/json' -d '{"prompt": "operating system"}' http://localhost:4000/topic
+// curl -i -X POST -H 'Content-Type: application/json' -d '{"prompt": "Control unit of CPU directs operation, what to do, with what data, when to do it\nGive the definition of assembler and ISA\nDatapath stores users data and moved program data\nAssembly instruction in translated by assembler into machine code in a 1 to 1 fashion\nPseudo-instruction is translated by the assembler into one or more lines of machine code\nISA is an abstraction from hardware to low level software\nmemorize the fields of instruction formats"}' http://localhost:4000/notes
+// Delete some of console.log
 
 // var corsOptions = {
 //   origin: 'http://localhost:3000/',
@@ -116,11 +140,11 @@ app.post('/topic', async (req, res) => {
 // http request 
 
 app.post('/sendNotification', async (req, res) => {
-  console.log('notification sending'); 
+  console.log('notification sending');
   let message = req.body.message;
-  let phoneNum = req.body.phoneNumber; 
-  console.log('message'+ message); 
-  console.log('phoneNum'+ phoneNum); 
+  let phoneNum = req.body.phoneNumber;
+  console.log('message' + message);
+  console.log('phoneNum' + phoneNum);
 
 
 
@@ -130,15 +154,15 @@ app.post('/sendNotification', async (req, res) => {
   console.log(sid);
   console.log(auth_token);
 
-  let client = new Twilio(sid, auth_token); 
-  client.messages.create({ 
+  let client = new Twilio(sid, auth_token);
+  client.messages.create({
     from: 18339312987,
-    to: phoneNum, 
+    to: phoneNum,
     body: message
-  }); 
-  res.send({ 
+  });
+  res.send({
     post: "success"
-  }); 
+  });
 });
 
 
