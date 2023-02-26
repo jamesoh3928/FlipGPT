@@ -1,3 +1,17 @@
 .inputs-container {
   width: 45vw;
 }
+
+.inputs-container textarea {
+  width: 100%;
+  height: 200px;
+  border: none;
+  border-radius: 10px;
+  resize: none;
+  padding: 0.5em;
+}
+
+.inputs-container textarea:focus {
+  border: none;
+  outline: none;
+}

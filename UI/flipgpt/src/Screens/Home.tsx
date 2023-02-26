@@ -5,11 +5,29 @@ import { GPTopics } from "../Types/GPTopics";
 
 import "../Styles/home.css";
 import Button from "../Components/Button";
+import Icons from "../Components/Icons";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigation = useNavigate();
   const [selectedTopic, setSelectedTopic] = useState<GPTopics>("Topic");
 
   const [input, setInput] = useState("");
+
+  /**
+   * Select a topic
+   */
+  const onSelect = () => {
+    setSelectedTopic((value) => (value == "Notes" ? "Topic" : "Notes"));
+    setInput("");
+  };
+
+  /**
+   * Go to flashcard
+   */
+  const goToFlashCard = () => {
+    navigation("/flash-card-study");
+  };
 
   return (
     <div
@@ -28,15 +46,27 @@ const Home = () => {
       )}
 
       <div className="inputs-container margin-vertical-15 flex flex-row ">
-        <Input
-          value={input}
-          onChange={setInput}
-          color={"white"}
-          placeholder={"Enter Topic..."}
-        />
+        {selectedTopic == "Topic" ? (
+          <Input
+            value={input}
+            onChange={setInput}
+            color={"white"}
+            placeholder={"Enter Topic..."}
+          />
+        ) : (
+          <div className="relative">
+            <textarea
+              value={input}
+              onChange={(ev) => setInput(ev.currentTarget.value)}
+              className="fs-20"
+            />
+          </div>
+        )}
       </div>
 
-      <Button text="Search..."></Button>
+      <Button onPress={goToFlashCard}>
+        <Icons name="search" color="white" />
+      </Button>
     </div>
   );
 };

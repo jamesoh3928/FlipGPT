@@ -15,7 +15,7 @@ const Input: React.FC<Props> = (props) => {
         {props.label}
       </p>
       <input
-        className="input-input"
+        className="input-input fs-20"
         type="text"
         placeholder={props.placeholder}
         value={props.value}

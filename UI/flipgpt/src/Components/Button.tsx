@@ -38,7 +38,11 @@ const Button: React.FC<Props> = ({
       }}
       className="clickable flex flex-center flex-col button-container"
     >
-      {text ? <h2 className="margin-0 f-white fs-20 f-bold">{text}</h2> : null}
+      {text ? (
+        <h2 className="margin-0 f-white fs-20 f-bold">{text}</h2>
+      ) : (
+        children
+      )}
     </div>
   );
 };
