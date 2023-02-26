@@ -1,4 +1,12 @@
 # FlipGPT
+## TODO List
+1. Backend DB - Ryan, Ben
+2. Spinning - Colin
+3. Use parsed data to display flashcards
+4. Final Testing
+5. Record video demo
+6. Presentation?
+
 ## Inspiration
 As scholars and lifelong learners, we are constantly seeking the optimal way to absorb and retain knowledge. While the desire to acquire new information is ever-present, our ability to store it can be fleeting. Inevitably, we may falter on quizzes, forgetting concepts we only just learned. How might we fortify our long-term memory? Psychology suggests that one of the most effective means of bolstering retention is through self-testing. Indeed, this may be why we often find ourselves taking quizzes and exams in educational settings. As corroborated by Ebbinghaus's Forgetting Curve, repetition based on active recall (i.e. the testing effect) enhances long-term retention: https://en.wikipedia.org/wiki/Forgetting_curve#Increasing_rate_of_learning. In light of this, what could be the most potent tool for learning? Flashcards!
 
@@ -18,7 +26,7 @@ We employed the following languages and frameworks:
 
 To design the application, we utilized Figma.
 
-In addition, we utilized various APIs, such as `ChatGPTUnofficialProxyAPI` and `TwilioAPI`.
+In addition, we utilized various APIs, such as `ChatGPTUnofficialProxyAPI` (https://www.npmjs.com/package/chatgpt) and `TwilioAPI` (https://www.twilio.com/?utm_source=google&utm_medium=cpc&utm_term=twilio%20api&utm_campaign=G_S_NAMER_Brand_Twilio_Tier2&cq_plac=&cq_net=g&cq_pos=&cq_med=&cq_plt=gp&gclid=Cj0KCQiAgOefBhDgARIsAMhqXA4eu4vZyaWo1-F3zMRqXB-X5-nnZBu1L02Q9HeSE89ZYJFkn3ocoZcaAgBLEALw_wcB).
 
 ## Challenges we ran into
 - Familiarizing ourselves with new frameworks in 24 hours
