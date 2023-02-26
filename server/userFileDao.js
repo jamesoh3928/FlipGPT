@@ -65,12 +65,8 @@ function updateUser(user) {
 
 // create the user 
 function createUser(user) {
-    // const user = {
-    //     username: username,
-    //     password: password,
-    //     phoneNumber: number
-    // }
-    const newUser = userCache.set(user.username, user);
+    userCache.set(user.username, user);
+    let newUser = getUser(user.username); 
     writeJson(); 
     return newUser;
 }
