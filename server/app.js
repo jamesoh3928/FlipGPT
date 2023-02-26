@@ -263,8 +263,8 @@ app.post("/sendNotification", async (req, res) => {
   console.log("notification sending");
   let message = req.body.message;
   let phoneNum = req.body.phoneNumber;
-  console.log("message" + message);
-  console.log("phoneNum" + phoneNum);
+  // console.log("message" + message);
+  // console.log("phoneNum" + phoneNum);
 
   let sid = process.env.TWILIO_SID;
   let auth_token = process.env.TWILIO_AUTH_TOKEN;
@@ -275,6 +275,7 @@ app.post("/sendNotification", async (req, res) => {
     to: phoneNum,
     body: message,
   });
+  
   res.send({
     post: "success",
   });

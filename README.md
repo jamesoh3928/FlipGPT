@@ -1,7 +1,6 @@
 # FlipGPT
 <!-- Display image file FlipGPT.png -->
 ![Logo](FlipGPT.png)
-
 ## Inspiration
 As scholars and lifelong learners, we are constantly seeking the optimal way to absorb and retain knowledge. While the desire to acquire new information is ever-present, our ability to store it can be fleeting. Inevitably, we may falter on quizzes, forgetting concepts we only just learned. How might we fortify our long-term memory? Psychology suggests that one of the most effective means of bolstering retention is through self-testing. Indeed, this may be why we often find ourselves taking quizzes and exams in educational settings. As corroborated by Ebbinghaus's Forgetting Curve, repetition based on active recall (i.e. the testing effect) enhances long-term retention: https://en.wikipedia.org/wiki/Forgetting_curve#Increasing_rate_of_learning. In light of this, what could be the most potent tool for learning? Flashcards!
 
@@ -32,40 +31,39 @@ We employed the following languages and frameworks:
 
 To design the application, we utilized Figma.
 
-In addition, we utilized various APIs, such as [ChatGPTUnofficialProxyAPI](https://www.npmjs.com/package/chatgpt) and [TwilioAPI](https://www.twilio.com/?utm_source=google&utm_medium=cpc&utm_term=twilio%20api&utm_campaign=G_S_NAMER_Brand_Twilio_Tier2&cq_plac=&cq_net=g&cq_pos=&cq_med=&cq_plt=gp&gclid=Cj0KCQiAgOefBhDgARIsAMhqXA4eu4vZyaWo1-F3zMRqXB-X5-nnZBu1L02Q9HeSE89ZYJFkn3ocoZcaAgBLEALw_wcB).
+In addition, we utilized various APIs, such as `ChatGPTUnofficialProxyAPI` and `TwilioAPI`.
 
 ## Challenges we ran into
 - Familiarizing ourselves with new frameworks in 24 hours
-- Z-index for CSS
-- Generating good prompt for AI model
-- Decision on database design
-- Decision on API design
+    - 2 members of our team never used Node.js or React before, learning them was an enriching experience for both team members
+- Frontend flashcard animation and functionality
+- Parsing user input to generate an effective prompt for AI model
+- Database design
+    - Originally, we used indexxeddb but decided to migrate to a Node.js server once our project developed.  
 
 ## Accomplishments that we're proud of
 - Our MVP, which proves highly effective for studying purposes
-- Teamwork/Communication
-- Mutual respect and appreciation among team members
-- Not giving up and overcoming challenges
+    - This was built during a 24 hour hack-a-thon (Brickhack 9). Completing this project was an accomplishment in itself.
+- Implementation of Twilio to send text message reminders to help students stay on track with studying. 
+- We did not sacrafice any of our original ideas - we overcame all challenges presented to us
 
 ## What we learned
 - Importance of design decisions
-- Breaking down a project into smaller problems
-- Many of us had to learn new frameworks (React, JavaScript) and how to interface with various APIs (`ChatGPTUnofficialProxyAPI`, `TwilioAPI`).
+- Abstractions of complex ideas into smaller, managable chunks. 
+- Many of us had to learn new frameworks (React, JavaScript, Node.js) and how to interface with various APIs (`ChatGPTUnofficialProxyAPI`, `TwilioAPI`).
 
 ## What's next for FlipGPT
-- Implementation of a SQL or NoSQL database
+- Implementation of an SQL or NoSQL database
 - Integration of the official Open AI API once we amass a sufficient number of users
 - Domain Registration
-- Inclusion of an email reminder option
+- Inclusion of an email reminder option (alongside text reminders)
 - Incorporation of functionality for scanning PDF or image files and generating flashcards
 - More learning tools such as AI Tutor on specific subjects.
+- Subscription model for pricing!
+- Mobile app
 
 ## Contributors
 - [Ryan Current](https://github.com/Ryan-Current) - Database Lead / Backend / Frontend
 - [Ben Sippel](https://github.com/brs6412) - Database / Twilio API Lead / Frontend
-- [James Oh](https://github.com/jamesoh3928) - AI / Backend Lead / Product Manager
+- [James Oh](https://github.com/jamesoh3928) - AI / Backend / Product Manager
 - [Colin Tondreau](https://github.com/CTB333) - Frontend Lead / UI/UX Designer
-
-## Dependencies 
-
-Run `npm install` inside both '/server' and 'UI/FlipGPT' to install all dependencies.
