@@ -3,7 +3,20 @@ let userCache = new Map();
 
 // load the initial cache
 function readJson() {
-    
+    const fs = require("fs");
+
+    fs.readFile("users.json", (err, jsonString) => {
+        if(err){
+            console.log("File failed to read: ", err);
+            return;
+        }
+        try{
+            const user = JSON.parse(jsonString);
+            console.log("Username:", user.username);
+        }catch(err){
+            console.log("Error parsing JSON string: ", err);
+        }
+    });
 }
 
 
@@ -14,14 +27,14 @@ function writeJson() {
 
 
 // get the user from the cache
-function userExists(username: String) {
-    userCache.has(username)
+function userExists(username) {
+    userCache.has(username);
 }
 
 
 // get the user from the cache
-function getUser() {
-    
+function getUser(username) {
+    return userCache.get(username);
 }
 
 
