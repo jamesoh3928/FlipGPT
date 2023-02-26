@@ -1,0 +1,21 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.dropdown {
+    height: 2.9em; 
+    padding: 0.5em;
+    border: none;
+    border-radius: 10px;
+    margin: 0px;
+    width: 250px;
+}
+
+
+.dropdown_option {
+    height: 209px;
+    
+}
+
