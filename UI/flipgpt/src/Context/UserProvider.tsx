@@ -9,6 +9,7 @@ type ContextType = {
   onCancel: (func: (msg?: string) => void) => void;
   login: (options: { userName: string; password: string }) => Promise<void>;
   signOut: () => void;
+  updateUser: (user: User) => Promise<void>;
   create: (options: Omit<User, "cardSets">) => Promise<void>;
   get: (options: { userName: string }) => Promise<User | null>;
   deleteUser: (options: { userName: string }) => Promise<void>;
@@ -21,6 +22,7 @@ const UserContext = createContext<ContextType>({
   login: async (options: { userName: string; password: string }) => {},
   signOut: () => {},
   create: async (options: Omit<User, "cardSets">) => {},
+  updateUser: async (user: User) => {},
   get: async (options: { userName: string }) => null,
   deleteUser: async (options: { userName: string }) => {},
 });
@@ -73,6 +75,14 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   /**
+   * update the current user
+   */
+  const updateUser = async (user: User) => {
+    await USER_API.updateUser(user);
+    setUser(user);
+  };
+
+  /**
    * get a specific user
    */
   const get = async (options: { userName: string }) => {
@@ -94,6 +104,7 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
     login,
     signOut,
     create,
+    updateUser,
     get,
     deleteUser,
   };
