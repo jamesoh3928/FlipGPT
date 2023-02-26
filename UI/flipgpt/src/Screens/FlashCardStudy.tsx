@@ -94,61 +94,68 @@ const FlashCardStudy: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col flex-center">
-      <Button
-        onPress={goBack}
-        style={{ position: "absolute", top: "25px", left: "25px" }}
-      >
-        <Icons name="leftArrow" />
-      </Button>
-      {cardSet !== null ? (
-        <div className="flex flex-col flex-center">
-          <div id="Topic">
-            <h1>{cardSet.title}</h1>
-          </div>
-          <div style={{ height: 100 }} />
-          <div className="width-100 flex flex-center">
-            <FlashCard
-              flipped={flipped}
-              toggleFlip={() => setFlipped((val) => !val)}
-              front={cards[index].front}
-              back={cards[index].back}
-            ></FlashCard>
-          </div>
-          <div style={{ height: 100 }} />
-          <div
-            className="flex flex-center"
-            style={{ justifyContent: "space-evenly", width: "75%" }}
-          >
-            {/* TODO: Set flip to front when button is clicked */}
-            <Button
-              onPress={() => {
-                setIndex((val) => val - 1);
-                setFlipped(false);
-              }}
-              disabled={index === 0}
-            >
-              <Icons name="leftArrow"></Icons>
-            </Button>
-            <h2>
-              {index + 1} of {cards.length}
-            </h2>
-            <Button
-              onPress={() => {
-                setIndex((val) => val + 1);
-                setFlipped(false);
-              }}
-              disabled={index === cards.length - 1}
-            >
-              <Icons name="rightArrow"></Icons>
-            </Button>
-          </div>
-        </div>
-      ) : (
-        <div style={{ height: "40vh" }} className="width-100 flex flex-center ">
-          <Spinner />
+    <div>
+      {index === cards.length - 1 && (
+        <div className="flex flex-center">
+          <Button onPress={() => navigation("/")}>Finish</Button>
         </div>
       )}
+      <div className="flex flex-col flex-center">
+        <Button
+          onPress={goBack}
+          style={{ position: "absolute", top: "25px", left: "25px" }}
+        >
+          <Icons name="leftArrow" />
+        </Button>
+        {cardSet !== null ? (
+          <div className="flex flex-col flex-center">
+            <div id="Topic">
+              <h1>{cardSet.title}</h1>
+            </div>
+            <div style={{ height: 100 }} />
+            <div className="width-100 flex flex-center">
+              <FlashCard
+                flipped={flipped}
+                toggleFlip={() => setFlipped((val) => !val)}
+                front={cards[index].front}
+                back={cards[index].back}
+              ></FlashCard>
+            </div>
+            <div style={{ height: 100 }} />
+            <div
+              className="flex flex-center"
+              style={{ justifyContent: "space-evenly", width: "75%" }}
+            >
+              {/* TODO: Set flip to front when button is clicked */}
+              <Button
+                onPress={() => {
+                  setIndex((val) => val - 1);
+                  setFlipped(false);
+                }}
+                disabled={index === 0}
+              >
+                <Icons name="leftArrow"></Icons>
+              </Button>
+              <h2 className="f-white">
+                {index + 1} of {cards.length}
+              </h2>
+              <Button
+                onPress={() => {
+                  setIndex((val) => val + 1);
+                  setFlipped(false);
+                }}
+                disabled={index === cards.length - 1}
+              >
+                <Icons name="rightArrow"></Icons>
+              </Button>
+            </div>
+          </div>
+        ) : (
+          <div style={{ height: "40vh" }} className="width-100 flex flex-center ">
+            <Spinner />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
