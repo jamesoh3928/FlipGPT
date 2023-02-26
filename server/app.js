@@ -186,8 +186,12 @@ app.post("/topic", async (req, res) => {
         history: [],
       };
     });
-
+  console.log(cards);
   const setId = card_set_file_dao.createCardSet(cards, username);
+  if (setId === null) {
+    res.status(500).send("Failed to create card set");
+    return;
+  }
   res.send({
     setId,
   });
