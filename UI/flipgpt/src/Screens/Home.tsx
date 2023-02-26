@@ -11,7 +11,6 @@ import DropDown from "../Components/DropDown";
 import CHATGPT_API from "../Context/ChatGptAPI";
 import Log from "../Log";
 import { FlashCard } from "../Types/FlashCard";
-import { randomInt } from "crypto";
 
 const TOPICS: GPTopics[] = ["Notes", "Topic"];
 
@@ -45,7 +44,7 @@ const Home = () => {
     if (!response) return setLoading(false);
 
     user.cardSets.push({
-      setId: randomInt(100),
+      setId: Math.random() * 100,
       title: input,
       cards: response.flashCards,
       dateLastTaken: new Date(),
