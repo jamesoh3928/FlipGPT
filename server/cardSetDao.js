@@ -84,7 +84,7 @@ function checkCardsetNumber(username) {
 }
 
 function getUniqueId() {
-    return newId = cardSetCache[cardSetCache.length - 1].setId + 1;
+    return cardSetCache[cardSetCache.length - 1].setId + 1;
 }
 
 // TODO

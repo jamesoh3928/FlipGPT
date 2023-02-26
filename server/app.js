@@ -80,7 +80,7 @@ app.get("/cardSets/:username", async (req, res) => {
   res.send(JSON.stringify(card_set_file_dao.getCardSets(username)));
 });
 
-app.get("/cardSets/withSetId/:setId", async (req, res) => {
+app.get("/cardSets/:setId", async (req, res) => {
   let setid = req.params.setId;
   let cardset = card_set_file_dao.getCardSet(setid);
   console.log(cardset);
