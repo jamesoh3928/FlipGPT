@@ -4,5 +4,4 @@ export interface User {
     userName : string; 
     password : string; 
     phoneNumber : string; 
-    cardSets : FlashCardSet[]; 
 }

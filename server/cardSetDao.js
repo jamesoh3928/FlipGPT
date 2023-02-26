@@ -37,17 +37,19 @@ function updateLastDate(cardSetId) {
     for(var cardSet in cardSetCache) {
         if(cardSet.setId === cardSetId) {
             cardSet.updateLastDate = new Date(); // sets the time to now 
+            writeJson();
+            return cardSet;
         }
     } 
-    writeJson(); 
+    return null; 
 }
 
 
 // create the card set 
 function createCardSet(cardSet) {
     cardSetCache.push(cardSet); 
-    return cardSet; 
     writeJson(); 
+    return cardSet; 
 }
 
 

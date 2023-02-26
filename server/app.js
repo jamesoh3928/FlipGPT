@@ -59,8 +59,7 @@ card_set_file_dao.readJson();
 // use body of {"setId": "string"}
 app.put("/cardSets", async (req, res) => {
   let id = req.body.setId;
-  card_set_file_dao.updateLastDate(id);
-  res.send(JSON.stringify("SUCCESS"));
+  res.send(JSON.stringify(card_set_file_dao.updateLastDate(id)));
 });
 
 app.get("/cardSets/:username", async (req, res) => {
