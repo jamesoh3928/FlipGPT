@@ -8,6 +8,7 @@ import Log from "../Log";
 import "../Styles/login.css";
 import Images from "../assets/images/Images";
 import { useUserContext } from "../Context/UserProvider";
+import { Spinner } from "../Components/Spinner";
 
 function Login() {
   const { user, login, onCancel } = useUserContext();
@@ -95,7 +96,9 @@ function Login() {
           </div>
 
           <div className="margin-vertical-25 ">
-            <Button onPress={submit} text={loading ? "Loading..." : "Login"} />
+            <Button onPress={submit} text={loading ? undefined : "Login"}>
+              <Spinner />
+            </Button>
           </div>
         </div>
       </div>

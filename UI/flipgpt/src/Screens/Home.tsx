@@ -11,6 +11,7 @@ import DropDown from "../Components/DropDown";
 import CHATGPT_API from "../Context/ChatGptAPI";
 import Log from "../Log";
 import { FlashCard } from "../Types/FlashCard";
+import { Spinner } from "../Components/Spinner";
 
 const TOPICS: GPTopics[] = ["Notes", "Topic"];
 
@@ -133,12 +134,8 @@ const Home = () => {
         )}
       </div>
 
-      <Button
-        text={loading ? "Loading..." : undefined}
-        disabled={loading}
-        onPress={submit}
-      >
-        <Icons name="search" color="white" />
+      <Button disabled={loading} onPress={submit}>
+        {loading ? <Spinner /> : <Icons name="search" color="white" />}
       </Button>
     </div>
   );
