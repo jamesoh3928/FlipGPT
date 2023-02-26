@@ -23,13 +23,13 @@ const FlashCard: React.FC<Props> = ({
       className={`flash-card-container ${flipped ? `flipped` : ``}`}
     >
       <div className={`flash-card-content`}>
-        <div className="flash-card front clickable">
+        <div className="shadow flash-card front clickable">
           <h2 className="f-40 f-bold flash-card-text">
             <span />
             {front}
           </h2>
         </div>
-        <div className="flash-card back clickable">
+        <div className="shadow flash-card back clickable">
           <h2 className="f-40 f-bold flash-card-text">
             <span />
             {back}

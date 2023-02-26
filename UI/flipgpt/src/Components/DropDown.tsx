@@ -16,15 +16,20 @@ const DropDown: React.FC<Props> = ({ value, values, onChange }) => {
     <div className="flex flex-col container">
       <div
         onClick={() => setOpen((val) => !val)}
-        className={`clickable dropdown flex relative ${
+        className={`clickable dropdown flex relative shadow ${
           open ? `dropdown-open` : ``
         } bg-white`}
       >
         <div className="place-holder-container flex flex-center">
           <p className="dropdown-text fs-20">{value}</p>
         </div>
-        <div style={{ flex: 0.3 }} className="flex flex-center bg-orange">
-          <Icons name={open ? "upArrow" : "downArrow"} size={25} />
+        <div
+          style={{ flex: 0.3 }}
+          className={`flex flex-center rotatable ${
+            open ? `rotate` : ``
+          } bg-orange`}
+        >
+          <Icons name={"downArrow"} size={25} />
         </div>
       </div>
       <div
