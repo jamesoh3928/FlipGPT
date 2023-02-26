@@ -18,26 +18,19 @@ const api = new ChatGPTUnofficialProxyAPI({
   debug: false,
 });
 
-
 // // // // // // // // // // // // // // // // // //
 // Users request handling
 // // // // // // // // // // // // // // // // // //
 
-let userCache = new Map(); 
-
-
-
-
+let userCache = new Map();
 
 // // // // // // // // // // // // // // // // // //
 // CardSets request handling
 // // // // // // // // // // // // // // // // // //
 
-
 // // // // // // // // // // // // // // // // // //
 // ChatGPT interaction handling
 // // // // // // // // // // // // // // // // // //
-
 
 // app.get('/', async (req, res) => {
 //   console.log(`Request: ${req}`);
@@ -136,12 +129,7 @@ app.post("/topic", async (req, res) => {
   console.log(result);
 });
 
-<<<<<<< Updated upstream
-
-app.post('/notes', async (req, res) => {
-=======
 app.post("/notes", async (req, res) => {
->>>>>>> Stashed changes
   let data = req.body;
   let prompt = `My notes: ${data.prompt}`;
 
@@ -182,16 +170,6 @@ app.post("/notes", async (req, res) => {
 // curl -i -X POST -H 'Content-Type: application/json' -d '{"prompt": "Control unit of CPU directs operation, what to do, with what data, when to do it\nGive the definition of assembler and ISA\nDatapath stores users data and moved program data\nAssembly instruction in translated by assembler into machine code in a 1 to 1 fashion\nPseudo-instruction is translated by the assembler into one or more lines of machine code\nISA is an abstraction from hardware to low level software\nmemorize the fields of instruction formats"}' http://localhost:4000/notes
 // Delete some of console.log
 
-<<<<<<< Updated upstream
-
-// // // // // // // // // // // // // // // // // //
-// Twilio request handling
-// // // // // // // // // // // // // // // // // // 
-
-app.post('/sendNotification', async (req, res) => {
-  let message = req.body.message;
-  let phoneNum = req.body.phoneNumber;
-=======
 // var corsOptions = {
 //   origin: 'http://localhost:3000/',
 //   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
@@ -204,7 +182,6 @@ app.post("/sendNotification", async (req, res) => {
   let phoneNum = req.body.phoneNumber;
   console.log("message" + message);
   console.log("phoneNum" + phoneNum);
->>>>>>> Stashed changes
 
   let sid = process.env.TWILIO_SID;
   let auth_token = process.env.TWILIO_AUTH_TOKEN;

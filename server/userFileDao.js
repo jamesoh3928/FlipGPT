@@ -48,12 +48,14 @@ function updateUser() {
 // delete the user
 function deleteUser() {
 
+    writeJson(); 
 }
 
 
 // create the user 
 function createUser() {
 
+    writeJson(); 
 }
 
 const user_file_dao = {
