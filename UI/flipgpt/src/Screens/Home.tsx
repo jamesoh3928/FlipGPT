@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FlashCard from "../Components/FlashCard";
 import Input from "../Components/Input";
 import { GPTopics } from "../Types/GPTopics";
@@ -7,17 +7,23 @@ import "../Styles/home.css";
 import Button from "../Components/Button";
 import Icons from "../Components/Icons";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../Context/UserProvider";
 
 const Home = () => {
   const navigation = useNavigate();
+  const { user } = useUserContext();
   const [selectedTopic, setSelectedTopic] = useState<GPTopics>("Topic");
 
   const [input, setInput] = useState("");
 
+  useEffect(() => {
+    if (!user) navigation("/login");
+  }, [user]);
+
   /**
    * Select a topic
    */
-  const onSelect = () => {
+  const onSelect = (topic: GPTopics) => {
     setSelectedTopic((value) => (value == "Notes" ? "Topic" : "Notes"));
     setInput("");
   };
