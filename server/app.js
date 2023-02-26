@@ -78,6 +78,12 @@ app.get("/cardSets/:username", async (req, res) => {
   res.send(JSON.stringify(card_set_file_dao.getCardSets(username)));
 });
 
+
+app.get("/cardSets/withSetId/:setId", async (req, res) => {
+  let setid = req.params.setId;
+  res.send(JSON.stringify(card_set_file_dao.getCardSet(setid)));
+});
+
 // use body of full cardSet
 app.post("/cardSets", async (req, res) => {
   let cardSet = req.body;

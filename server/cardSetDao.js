@@ -31,6 +31,16 @@ function getCardSets(username) {
     return userSets; 
 }
 
+// get 1 card set
+function getCardSets(setId) {
+    for(var cardSet in cardSetCache) {
+        if(cardSet.setId === setId) {
+            return cardSet; 
+        }
+    }
+    return null; 
+}
+
 
 // update the card set
 function updateLastDate(cardSetId) {
@@ -64,6 +74,7 @@ function createCardSet(cardSet) {
 const card_set_file_dao = {
     readJson, 
     writeJson, 
+    getCardSet, 
     getCardSets, 
     updateLastDate, 
     createCardSet
