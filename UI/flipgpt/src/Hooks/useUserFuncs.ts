@@ -2,11 +2,12 @@ import React from "react";
 import { User } from "../Types/User";
 import { LoginResponse } from "../Types/LoginResponse";
 import Log from "../Log";
+import API from "../Types/API";
 
 export const useUserFuncs = () => {
   async function getUser(username: string) {
     try {
-      const response = await fetch("http://localhost:4000/user/" + username, {
+      const response = await fetch(API + "user/" + username, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -23,17 +24,14 @@ export const useUserFuncs = () => {
 
   async function userExists(username: string) {
     try {
-      const response = await fetch(
-        "http://localhost:4000/user/exists/" + username,
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: null,
-        }
-      );
+      const response = await fetch(API + "user/exists/" + username, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: null,
+      });
       return await response.json();
     } catch (e: any) {
       Log.log(`Get User Error: ${e.message}`);
@@ -43,7 +41,7 @@ export const useUserFuncs = () => {
 
   async function updateUser(user: User) {
     try {
-      const response = await fetch("http://localhost:4000/user/", {
+      const response = await fetch(API + "user/", {
         method: "UPDATE",
         headers: {
           Accept: "application/json",
@@ -60,7 +58,7 @@ export const useUserFuncs = () => {
 
   async function createUser(user: User) {
     try {
-      const response = await fetch("http://localhost:4000/user/", {
+      const response = await fetch(API + "user", {
         method: "POST",
         headers: {
           Accept: "application/json",

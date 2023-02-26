@@ -44,10 +44,13 @@ const Home = () => {
 
     if (!response) return setLoading(false);
 
-    if (response.flashCards.length == 0) {
-      Log.log(`Error Server Returned empty list`);
-      return setLoading(false);
-    }
+    Log.log(`Response`);
+    Log.log(response);
+
+    // if (response.flashCards.length == 0) {
+    //   Log.log(`Error Server Returned empty list`);
+    //   return setLoading(false);
+    // }
 
     /**
      * want to remove
@@ -62,7 +65,7 @@ const Home = () => {
 
     // await updateUser(user);
 
-    goToFlashCard(response.flashCards);
+    // goToFlashCard(response.flashCards);
 
     setLoading(false);
   };

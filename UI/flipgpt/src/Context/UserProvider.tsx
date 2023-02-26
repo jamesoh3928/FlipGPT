@@ -1,5 +1,6 @@
 import React, { useContext, createContext, useState, useRef } from "react";
 import { useUserFuncs } from "../Hooks/useUserFuncs";
+import Log from "../Log";
 
 import { User } from "../Types/User";
 
@@ -52,6 +53,7 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
    */
   const login = async (options: { userName: string; password: string }) => {
     let response = await userFuncs.login(options.userName, options.password);
+    Log.log(response);
     if (response?.success) setUser(response.user);
     else onCancelRef.current(response?.errorMessage);
   };
@@ -68,8 +70,8 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
    */
   const create = async (options: User) => {
     let response = await userFuncs.createUser(options);
-    if (response?.success) setUser(response.user);
-    else onCancelRef.current(response?.errorMessage);
+    if (response) setUser(response);
+    else onCancelRef.current();
   };
 
   /**

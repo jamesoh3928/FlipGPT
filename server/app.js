@@ -27,12 +27,21 @@ const api = new ChatGPTUnofficialProxyAPI({
 // initial load of the users from json
 user_file_dao.readJson();
 
+<<<<<<< Updated upstream
 // app.use((req, res, next) => {
 //   console.log(`Server gets request to -`);
 //   console.log(req.url);
 //   console.log();
 //   next();
 // });
+=======
+app.use((req, res, next) => {
+  console.log(`Server gets ${req.method} request to -`);
+  console.log(req.url);
+  console.log();
+  next();
+});
+>>>>>>> Stashed changes
 
 app.get("/user/exists/:username", async (req, res) => {
   let username = req.params.username;
@@ -80,8 +89,12 @@ app.get("/cardSets/:username", async (req, res) => {
   res.send(JSON.stringify(card_set_file_dao.getCardSets(username)));
 });
 
+<<<<<<< Updated upstream
 
 app.get("/cardSets/:setId", async (req, res) => {
+=======
+app.get("/cardSets/withSetId/:setId", async (req, res) => {
+>>>>>>> Stashed changes
   let setid = req.params.setId;
   let cardset = card_set_file_dao.getCardSet(setid);
   console.log(cardset);

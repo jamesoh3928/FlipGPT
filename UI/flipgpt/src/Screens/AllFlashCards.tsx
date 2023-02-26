@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../Components/Button";
 import FlashCard from "../Components/FlashCard";
 import { useUserContext } from "../Context/UserProvider";
@@ -30,7 +30,9 @@ export const AllFlashCards = () => {
           <div>
             <div style={{ height: "200px" }}></div>
             <p className="f-white fs-25 f-bold">No Study Sets Found</p>
-            <Button text="Create New Set" />
+            <Link to={"/home"}>
+              <Button text="Create New Set" />
+            </Link>
           </div>
         ) : (
           flashCardSets.map((set) => (

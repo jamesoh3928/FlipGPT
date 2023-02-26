@@ -34,7 +34,7 @@ function writeJson() {
 
 // get the user from the cache
 function userExists(userName) {
-  console.log(userCache);
+  //   console.log(userCache);
   return userCache.has(userName);
 }
 
