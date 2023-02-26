@@ -1,3 +1,18 @@
+h1{
+    text-align: center;
+    color: white;
+}
+
+h2{
+    text-align: center;
+    color: white;
+    margin-top: 0px;
+}
+
+.Topic{
+    margin-bottom: 10px;
+}
+
 .flash-card-container {
   padding: 15px;
   width: 500px;

@@ -32,7 +32,7 @@ const Home = () => {
    * Go to flashcard
    */
   const goToFlashCard = () => {
-    navigation("/flash-card-study");
+    navigation("/flash-card-study", {state: {studyTopic: "Example Topic", cards: [{front: "front1", back: "back1"}, {front: "front2", back:"back2"}]}});
   };
 
   return (
