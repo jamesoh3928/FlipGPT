@@ -69,14 +69,15 @@ app.put("/cardSets/lastDate/:id", async (req, res) => {
 
 app.get("/cardSets/user/:username", async (req, res) => {
   let username = req.params.username;
-  res.send(JSON.stringify(card_set_file_dao.getCardSets(username)));
+  res.send([card_set_file_dao.getCardSets(username)]);
 });
 
 app.get("/cardSets/id/:setId", async (req, res) => {
   let setid = req.params.setId;
   let cardset = card_set_file_dao.getCardSet(setid);
   console.log(cardset);
-  res.send(JSON.stringify(cardset));
+  // res.send(JSON.stringify(cardset));
+  res.send([cardset]);
 });
 
 // TODO: this is not working right now, and not needed
