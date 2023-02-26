@@ -188,7 +188,7 @@ app.post("/topic", async (req, res) => {
       };
     });
   console.log(cards);
-  const setId = card_set_file_dao.createCardSet(cards, username);
+  const setId = card_set_file_dao.createCardSet(cards, username, topic);
   if (setId === null) {
     res.status(500).send("Failed to create card set");
     return;
@@ -241,7 +241,7 @@ app.post("/notes", async (req, res) => {
   //   flashcards,
   // });
 
-  const setId = card_set_file_dao.createCardSet(cards, username);
+  const setId = card_set_file_dao.createCardSet(cards, username, "Your Notes");
   res.send({
     setId,
   });

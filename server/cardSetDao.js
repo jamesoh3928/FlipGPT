@@ -53,7 +53,8 @@ function updateLastDate(cardSetId) {
 }
 
 // create the card set and return the id of new set
-function createCardSet(cards, username) {
+function createCardSet(cards, username, title) {
+  
   if (!checkCardsetNumber(username)) {
     console.log(`User has too many sets`);
     return null;
@@ -63,7 +64,8 @@ function createCardSet(cards, username) {
   let setId = getUniqueId();
   let cardSet = {
     setId,
-    username: username,
+    username,
+    title,
     cards,
   };
   cardSetCache.push(cardSet);

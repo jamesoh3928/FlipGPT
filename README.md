@@ -2,10 +2,9 @@
 <!-- Display image file FlipGPT.png -->
 ![Logo](FlipGPT.png)
 ## TODO List
-3. Use parsed data to display flashcards
 4. Final Testing
-5. Record video demo
-6. Presentation?
+5. Record video demo (might be not required)
+6. Presentation? (PPT? might not required)
 
 ## Inspiration
 As scholars and lifelong learners, we are constantly seeking the optimal way to absorb and retain knowledge. While the desire to acquire new information is ever-present, our ability to store it can be fleeting. Inevitably, we may falter on quizzes, forgetting concepts we only just learned. How might we fortify our long-term memory? Psychology suggests that one of the most effective means of bolstering retention is through self-testing. Indeed, this may be why we often find ourselves taking quizzes and exams in educational settings. As corroborated by Ebbinghaus's Forgetting Curve, repetition based on active recall (i.e. the testing effect) enhances long-term retention: https://en.wikipedia.org/wiki/Forgetting_curve#Increasing_rate_of_learning. In light of this, what could be the most potent tool for learning? Flashcards!

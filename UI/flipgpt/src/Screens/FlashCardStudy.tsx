@@ -33,6 +33,7 @@ const FlashCardStudy: React.FC = () => {
 
   const cardSet: FlashCardSet | null = cardSets[0] ?? null;
   const cards = cardSet?.cards ?? [];
+  const title = cardSet?.title ?? "";
 
   useEffect(() => {
     if (!user) return navigation("/login");
@@ -60,7 +61,7 @@ const FlashCardStudy: React.FC = () => {
     });
 
     sendTwilioNotification(
-      `Good Job Finishing Study Set ${cardSet.title}. We'll remind you to check back and review in a week from now`,
+      `Good Job Finishing Study Set ${title}. We'll remind you to check back and review in a week from now`,
       user.phoneNumber
     );
 
@@ -78,7 +79,7 @@ const FlashCardStudy: React.FC = () => {
       {cardSet !== null ? (
         <div className="flex flex-col flex-center">
           <div>
-            <h1 className="f-white">{cardSet.title}</h1>
+            <h1 className="f-white">{title}</h1>
             <h3 className="f-white">
               {index + 1} of {cards.length}
             </h3>
