@@ -2,7 +2,6 @@
 <!-- Display image file FlipGPT.png -->
 ![Logo](FlipGPT.png)
 ## TODO List
-1. Backend DB - Ryan, Ben
 3. Use parsed data to display flashcards
 4. Final Testing
 5. Record video demo
@@ -32,6 +31,7 @@ In addition, we utilized various APIs, such as `ChatGPTUnofficialProxyAPI` (http
 ## Challenges we ran into
 - Familiarizing ourselves with new frameworks in 24 hours
 - Z-index for CSS
+- Generating good prompt for AI
 
 ## Accomplishments that we're proud of
 - Our MVP, which proves highly effective for studying purposes

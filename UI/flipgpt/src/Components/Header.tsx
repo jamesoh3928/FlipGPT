@@ -22,7 +22,7 @@ const Header: React.FC<Props> = (props) => {
           className="flex flex-row"
         >
           <Link
-            to={"/user/:id/cards"}
+            to={"/user/cards"}
             className="clickable"
             style={{ marginRight: "25px" }}
           >

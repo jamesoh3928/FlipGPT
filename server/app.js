@@ -69,7 +69,7 @@ app.put("/cardSets/lastDate/:id", async (req, res) => {
 
 app.get("/cardSets/user/:username", async (req, res) => {
   let username = req.params.username;
-  res.send([card_set_file_dao.getCardSets(username)]);
+  res.send(card_set_file_dao.getCardSets(username));
 });
 
 app.get("/cardSets/id/:setId", async (req, res) => {

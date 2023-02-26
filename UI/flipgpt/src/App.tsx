@@ -36,7 +36,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/flash-card-study" element={<FlashCardStudy />} />
-          <Route path="/user/:id/cards" element={<AllFlashCards />} />
+          <Route path="/user/cards" element={<AllFlashCards />} />
         </Routes>
       </div>
     </UserProvider>
