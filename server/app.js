@@ -4,6 +4,7 @@ import { oraPromise } from "ora";
 import dotenv from "dotenv-safe";
 import Twilio from "twilio";
 import cors from "cors";
+import card_set_file_dao from "./cardSetDao.js";
 // import { Twilio } from 'twilio';
 
 dotenv.config();
@@ -27,6 +28,13 @@ let userCache = new Map();
 // // // // // // // // // // // // // // // // // //
 // CardSets request handling
 // // // // // // // // // // // // // // // // // //
+
+// use body of {"setId": "string"}
+app.post("/cardSets", async (req, res) => {
+  let id = req.body.setId; 
+  card_set_file_dao.updateLastDate(id); 
+  res.send(JSON.stringify("SUCCESS")); 
+}); 
 
 // // // // // // // // // // // // // // // // // //
 // ChatGPT interaction handling
@@ -124,7 +132,6 @@ app.post("/topic", async (req, res) => {
     });
 
   res.send({
-    title: data.prompt,
     flashcards,
   });
   console.log(result);
@@ -161,7 +168,6 @@ app.post("/notes", async (req, res) => {
   console.log(flashcards);
 
   res.send({
-    title: "Notes",
     flashcards,
   });
   console.log(result);

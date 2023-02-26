@@ -24,14 +24,16 @@ function readJson() {
 
 // write the cache to the json file
 function writeJson() {
+    let userList = []; 
     for(user in userCache){
-        const jsonString = JSON.stringify(user);
-        fs.writeFile('users.json', jsonString, err => {
-            if(err){
-                console.log("Error writing to file: ", err);
-            }
-        })
+        userList.push(user);
     }
+    const jsonString = JSON.stringify(userList);
+    fs.writeFile('users.json', jsonString, err => {
+        if(err){
+            console.log("Error writing to file: ", err);
+        }
+    }); 
 }
 
 

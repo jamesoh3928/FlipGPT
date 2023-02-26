@@ -55,9 +55,9 @@ const card_set_file_dao = {
     readJson, 
     writeJson, 
     getCardSets, 
-    updateCardSet, 
+    updateLastDate, 
     createCardSet
     // deleteCardSet, 
-}
+};
 
-export default card_set_file_dao
+export default card_set_file_dao; 
