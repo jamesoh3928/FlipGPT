@@ -1,8 +1,7 @@
-login-container {
+.login-container {
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
-  background-color: lightgrey;
   padding: 5px;
 }
 

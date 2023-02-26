@@ -7,6 +7,7 @@ type Props = {
   children?: React.ReactNode;
   onPress?: () => void;
   disabled?: boolean;
+  style?: any;
   colors?: {
     active: string;
     inactive: string;
@@ -18,6 +19,7 @@ const Button: React.FC<Props> = ({
   children,
   onPress,
   disabled,
+  style,
   colors = {
     inactive: "#e7853e",
     active: "#BD6C32",
@@ -32,6 +34,7 @@ const Button: React.FC<Props> = ({
       onClick={onPress}
       style={{
         backgroundColor: clicking ? colors.active : colors.inactive,
+        ...style,
       }}
       className="clickable flex flex-center flex-col button-container"
     >
