@@ -1,84 +1,86 @@
-import * as fs from 'fs';
+import * as fs from "fs";
 
 // TODO: add synchronized calls for map
-let userCache = new Map(); 
+let userCache = new Map();
 //const fs = require('fs');
 
 // load the initial cache
 function readJson() {
-    let jsonString = fs.readFileSync("users.json"); 
-    let users = JSON.parse(jsonString.toString());
-    console.log(users); 
-    for(let user of users) {
-        userCache.set(user.username, user);
-    }
+  let jsonString = fs.readFileSync("users.json");
+  let users = JSON.parse(jsonString.toString());
+  //   console.log(users);
+  for (let user of users) {
+    // console.log(user.userName);
+    userCache.set(user.userName, user);
+  }
+  console.log(userCache);
 }
-
 
 // write the cache to the json file
 function writeJson() {
-    let userList = []; 
-    for (let [key, value] of userCache) {
-        userList.push(value); 
+  let userList = [];
+  for (let [key, value] of userCache) {
+    userList.push(value);
+  }
+  // console.log(userList);
+  const jsonString = JSON.stringify(userList);
+  console.log(jsonString);
+  fs.writeFile("users.json", jsonString, (err) => {
+    if (err) {
+      console.log("Error writing to file: ", err);
     }
-    // console.log(userList); 
-    const jsonString = JSON.stringify(userList);
-    console.log(jsonString)
-    fs.writeFile('users.json', jsonString, err => {
-        if(err){
-            console.log("Error writing to file: ", err);
-        }
-    }); 
+  });
 }
-
 
 // get the user from the cache
-function userExists(username) {
-    return userCache.has(username);
+function userExists(userName) {
+  console.log(userCache);
+  return userCache.has(userName);
 }
-
 
 // get the user from the cache
-function getUser(username) {
-    return userCache.get(username);
+function getUser(userName) {
+  return userCache.get(userName);
 }
-
 
 // update the user
 function updateUser(user) {
-    if(!userExists(user)){
-        return;
-    }
-    const updatedUser = userCache.set(user.username, user);
-    writeJson(); 
-    return updatedUser;
+  if (!userExists(user.userName)) {
+    console.log(`User DNE`);
+    console.log(user);
+    console.log();
+    return null;
+  }
+  userCache.set(user.userName, user);
+  writeJson();
+  let updatedUser = userCache.get(user.userName);
+  return updatedUser;
 }
 
 // TODO
 // // delete the user
-// function deleteUser(username) {
-//     if(userCache.delete(username)){
-//         writeJson(); 
+// function deleteUser(userName) {
+//     if(userCache.delete(userName)){
+//         writeJson();
 //     }
 // }
 
-
-// create the user 
+// create the user
 function createUser(user) {
-    userCache.set(user.username, user);
-    let newUser = getUser(user.username); 
-    writeJson(); 
-    return newUser;
+  userCache.set(user.userName, user);
+  let newUser = getUser(user.userName);
+  writeJson();
+  return newUser;
 }
 
 const user_file_dao = {
-    readJson, 
-    writeJson, 
-    userExists,
-    getUser, 
-    updateUser, 
-    // deleteUser, 
-    createUser
-}
+  readJson,
+  writeJson,
+  userExists,
+  getUser,
+  updateUser,
+  // deleteUser,
+  createUser,
+};
 
-export default user_file_dao
+export default user_file_dao;

@@ -66,11 +66,8 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   /**
    * create a new user
    */
-  const create = async (options: Omit<User, "cardSets">) => {
-    let response = await userFuncs.createUser({
-      ...options,
-      cardSets: [],
-    });
+  const create = async (options: User) => {
+    let response = await userFuncs.createUser(options);
     if (response?.success) setUser(response.user);
     else onCancelRef.current(response?.errorMessage);
   };
