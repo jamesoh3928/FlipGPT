@@ -4,3 +4,4 @@
 # Environment variable
 .env
 .env.example
+package-lock.json
