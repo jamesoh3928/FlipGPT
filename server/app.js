@@ -182,6 +182,7 @@ app.post("/topic", async (req, res) => {
     });
 
   res.send({
+    title: data.prompt,
     flashcards,
   });
   console.log(result);
@@ -218,6 +219,7 @@ app.post("/notes", async (req, res) => {
   console.log(flashcards);
 
   res.send({
+    title: "Notes",
     flashcards,
   });
   console.log(result);
