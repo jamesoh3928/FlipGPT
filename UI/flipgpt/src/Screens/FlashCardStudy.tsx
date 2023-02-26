@@ -54,13 +54,14 @@ const FlashCardStudy: React.FC = () => {
    * Send Notification
    */
   const sendTextMsg = () => {
+    if (!user) return;
     onCancel((msg?: string) => {
       Log.log(`Error ${msg}`);
     });
 
     sendTwilioNotification(
       `Good Job Finishing Study Set ${cardSet.title}. We'll remind you to check back and review in a week from now`,
-      `17163469684`
+      user.phoneNumber
     );
 
     navigation("/");
