@@ -61,7 +61,7 @@ export const useUserFuncs = () => {
   async function createUser(user: User) {
     try {
       const response = await fetch("http://localhost:4000/user/", {
-        method: "UPDATE",
+        method: "POST",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
