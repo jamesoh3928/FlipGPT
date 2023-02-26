@@ -19,8 +19,13 @@ import Header from "./Components/Header";
 import "./Styles/global.css";
 import UserProvider from "./Context/UserProvider";
 import { AllFlashCards } from "./Screens/AllFlashCards";
+import { FlashCardSet } from "./Types/FlashCardSet";
 
 function App() {
+  // let cardSet : FlashCardSet = 
+  // {
+  //   setId = 
+  // }
   return (
     <UserProvider>
       <div className="app">

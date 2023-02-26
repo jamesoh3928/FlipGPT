@@ -64,13 +64,13 @@ function updateUser(user) {
 
 
 // create the user 
-function createUser(username, password, number) {
-    const user = {
-        username: username,
-        password: password,
-        phoneNumber: number
-    }
-    const newUser = userCache.set(username, user);
+function createUser(user) {
+    // const user = {
+    //     username: username,
+    //     password: password,
+    //     phoneNumber: number
+    // }
+    const newUser = userCache.set(user.username, user);
     writeJson(); 
     return newUser;
 }
