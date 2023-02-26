@@ -1,7 +1,6 @@
 # FlipGPT
 ## TODO List
 1. Backend DB - Ryan, Ben
-2. Spinning - Colin
 3. Use parsed data to display flashcards
 4. Final Testing
 5. Record video demo
