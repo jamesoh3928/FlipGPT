@@ -12,6 +12,8 @@ import { useCardSets } from "../Hooks/useCardSets";
 import { Spinner } from "../Components/Spinner";
 import { useUserContext } from "../Context/UserProvider";
 
+import TWILIO_API from "../Context/TwilioAPI";
+
 // type Props = {
 //   studyTopic?: string;
 //   cards?: FlashCardSet;
@@ -97,7 +99,11 @@ const FlashCardStudy: React.FC = () => {
     <div>
       {index === cards.length - 1 && (
         <div className="flex flex-center">
-          <Button onPress={() => navigation("/")}>Finish</Button>
+          <Button onPress={() => {
+            // TODO: make this to run automatically in backend
+            TWILIO_API.sendTwilioNotification("This is an example message", "18325239525");
+            navigation("/");
+          }}>Finish</Button>
         </div>
       )}
       <div className="flex flex-col flex-center">
