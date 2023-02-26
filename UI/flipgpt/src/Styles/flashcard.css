@@ -1,16 +1,16 @@
-h1{
-    text-align: center;
-    color: white;
+h1 {
+  text-align: center;
+  color: white;
 }
 
-h2{
-    text-align: center;
-    color: white;
-    margin-top: 0px;
+h2 {
+  text-align: center;
+  color: white;
+  margin-top: 0px;
 }
 
-.Topic{
-    margin-bottom: 10px;
+.Topic {
+  margin-bottom: 10px;
 }
 
 .flash-card-container {
@@ -53,4 +53,10 @@ h2{
 .flash-card.back {
   z-index: -1;
   transform: translateZ(-10px) rotateY(0.5turn);
+}
+
+.flash-card-text {
+  text-align: center;
+  font-weight: bold;
+  padding: 15px;
 }

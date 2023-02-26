@@ -17,10 +17,10 @@ const FlashCard: React.FC<Props> = ({ front, back }) => {
     >
       <div className={`flash-card-content`}>
         <div className="flash-card front clickable">
-          <p className="">{front}</p>
+          <p className="flash-card-text">{front}</p>
         </div>
         <div className="flash-card back clickable">
-          <p className="">{back}</p>
+          <p className="flash-card-text">{back}</p>
         </div>
       </div>
     </div>
