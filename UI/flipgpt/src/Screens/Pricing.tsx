@@ -38,7 +38,7 @@ function Pricing() {
           </p>
         </div>
 
-        <div className="input-boxes">
+        <div className="pricing-boxes">
           <div className="margin-vertical-15 ">
             <PricingRow title="Standard" price="$0" description="Generate 1 set of flashcards per day." /> 
           </div>
@@ -47,9 +47,8 @@ function Pricing() {
           </div>
           <div className="margin-vertical-15 width-100">
             <PricingRow title="Enterprise" price="$149.99" description="Generate unlimited flashcard sets per day, up to 15 total users." /> 
-            
           </div>
-
+          
         </div>
       </div>
     </div>

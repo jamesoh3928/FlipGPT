@@ -1,4 +1,6 @@
 import React from "react";
+import { useNavigate, useNavigation } from "react-router-dom";
+import Button from "./Button";
 
 import "../Styles/pricingrow.css";
 type Props = {
@@ -6,21 +8,28 @@ type Props = {
   price: string; 
   description: string;
 };
+
+
 const PricingRow: React.FC<Props> = (props) => {
-  return (
-    <div className="pricing-container">
-      <p className="pricing-title">
-        {props.title}
-      </p>
-      <p className="pricing-price">
-        {props.price}
-      </p>
-      <p>per month</p>
-      <p className="pricing-description">
-        {props.description}
-      </p>
-      
-    </div>
+    const navigation = useNavigate(); 
+    return (
+        <div className="pricing-container">
+            <h1 className="pricing-title">
+                {props.title}
+            </h1>
+            <h2 className="pricing-price">
+                {props.price}
+            </h2>
+            <p className="per-month-p">every month</p>
+            <p className="pricing-description">
+                {props.description}
+            </p>
+            <div className="pricing-enroll">
+            <Button onPress={()=>navigation("/signup")} text={"Enroll"}>
+                
+            </Button>
+            </div>
+        </div>
   );
 };
 
