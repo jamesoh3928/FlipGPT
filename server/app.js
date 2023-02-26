@@ -67,12 +67,12 @@ app.put("/cardSets/lastDate/:id", async (req, res) => {
   res.send(JSON.stringify(card_set_file_dao.updateLastDate(id)));
 });
 
-app.get("/cardSets/:username", async (req, res) => {
+app.get("/cardSets/user/:username", async (req, res) => {
   let username = req.params.username;
   res.send(JSON.stringify(card_set_file_dao.getCardSets(username)));
 });
 
-app.get("/cardSets/:setId", async (req, res) => {
+app.get("/cardSets/id/:setId", async (req, res) => {
   let setid = req.params.setId;
   let cardset = card_set_file_dao.getCardSet(setid);
   console.log(cardset);

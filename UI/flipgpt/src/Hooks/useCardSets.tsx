@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import Log from "../Log";
+import API from "../Types/API";
 import { FlashCardSet } from "../Types/FlashCardSet";
 
 export const useCardSets = () => {
@@ -18,7 +19,7 @@ export const useCardSets = () => {
    */
   const getByUserName = (userName: string) => {
     try {
-      fetch(``)
+      fetch(API + `cardSets/user/${userName}`)
         .then((response) => response.json())
         .then((json) => setCardSets(json));
     } catch (e: any) {
@@ -30,11 +31,19 @@ export const useCardSets = () => {
   /**
    * get the card sets by id
    */
-  const getById = (setId: string) => {
+  const getById = (setId: number) => {
     try {
-      fetch(``)
-        .then((response) => response.json())
-        .then((json) => setCardSets(json));
+      fetch(API + `cardSets/id/${setId}`)
+        .then((response) => {
+          Log.log(`Response to Json`, false);
+          Log.log(response);
+          return response.json();
+        })
+        .then((json) => {
+          Log.log(`Response JSON:`, false);
+          Log.log(json);
+          return setCardSets(json);
+        });
     } catch (e: any) {
       Log.log(`GetByUserName Error - ${e.message}`);
       return null;

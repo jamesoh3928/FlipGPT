@@ -34,7 +34,7 @@ const Home = () => {
     if (!validate() || !user) return;
     setLoading(true);
 
-    let response: { flashCards: FlashCard[] } | undefined = undefined;
+    let response: { setId: number } | undefined = undefined;
 
     if (selectedTopic == "Topic") {
       response = await CHATGPT_API.generateFlashcardTopic(input, user.userName);
@@ -42,10 +42,10 @@ const Home = () => {
       response = await CHATGPT_API.generateFlashcardNotes(input, user.userName);
     }
 
-    if (!response) return setLoading(false);
+    if (!response || !response.setId) return setLoading(false);
 
-    Log.log(`Response`);
-    Log.log(response);
+    // Log.log(`Response`);
+    // Log.log(response);
 
     // if (response.flashCards.length == 0) {
     //   Log.log(`Error Server Returned empty list`);
@@ -65,7 +65,7 @@ const Home = () => {
 
     // await updateUser(user);
 
-    // goToFlashCard(response.flashCards);
+    goToFlashCard(response.setId);
 
     setLoading(false);
   };
@@ -95,11 +95,10 @@ const Home = () => {
   /**
    * Go to flashcard
    */
-  const goToFlashCard = (cards: FlashCard[]) => {
+  const goToFlashCard = (setId: number) => {
     navigation("/flash-card-study", {
       state: {
-        studyTopic: input,
-        cards,
+        setId,
       },
     });
   };

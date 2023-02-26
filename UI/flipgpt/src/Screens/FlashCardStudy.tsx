@@ -8,6 +8,8 @@ import FlashCard from "../Components/FlashCard";
 import Icons from "../Components/Icons";
 import { RoutesProps } from "react-router-dom";
 import Log from "../Log";
+import { useCardSets } from "../Hooks/useCardSets";
+import { Spinner } from "../Components/Spinner";
 
 type Props = {
   studyTopic?: string;
@@ -62,47 +64,69 @@ const testObj = {
 
 const FlashCardStudy: React.FC<RoutesProps> = (props) => {
   const location = useLocation();
+  const {
+    state: { cardSets },
+    getByUserName,
+    getById,
+  } = useCardSets();
+  const { setId }: { setId: number } = location.state;
   // const { studyTopic, cards }: Props = state;
   const [index, setIndex] = useState(0);
+  const cardSet: FlashCardSet | null = cardSets[0] ?? null;
 
   useEffect(() => {
-    Log.log(location.pathname, false);
-    Log.log(location.state);
+    Log.log(`Calling get by id ${setId}`);
+    getById(setId);
+    // Log.log(location.pathname, false);
+    // Log.log(location.state);
   }, []);
+
+  useEffect(() => {
+    Log.log(`Card Set`, false);
+    Log.log(cardSet);
+  }, [cardSet]);
 
   return (
     <div className="flex flex-col flex-center">
-      <div id="Topic">
-        <h1>{testObj["title"]}</h1>
-      </div>
-      <div className="width-100 flex flex-center">
-        <FlashCard
-          front={testObj["flashcards"][index].front}
-          back={testObj["flashcards"][index].back}
-        ></FlashCard>
-      </div>
+      {cardSet !== null ? (
+        <div>
+          <div id="Topic">
+            <h1>{cardSet.title}</h1>
+          </div>
+          <div className="width-100 flex flex-center">
+            <FlashCard
+              front={cardSet.cards[index].front}
+              back={cardSet.cards[index].back}
+            ></FlashCard>
+          </div>
 
-      <div
-        className="flex flex-center"
-        style={{ justifyContent: "space-evenly", width: "50%" }}
-      >
-        {/* TODO: Set flip to front when button is clicked */}
-        <Button
-          onPress={() => setIndex((val) => val - 1)}
-          disabled={index === 0}
-        >
-          <Icons name="leftArrow"></Icons>
-        </Button>
-        <h2>
-          {index + 1} of {testObj["flashcards"].length}
-        </h2>
-        <Button
-          onPress={() => setIndex((val) => val + 1)}
-          disabled={index === testObj["flashcards"].length - 1}
-        >
-          <Icons name="rightArrow"></Icons>
-        </Button>
-      </div>
+          <div
+            className="flex flex-center"
+            style={{ justifyContent: "space-evenly", width: "50%" }}
+          >
+            {/* TODO: Set flip to front when button is clicked */}
+            <Button
+              onPress={() => setIndex((val) => val - 1)}
+              disabled={index === 0}
+            >
+              <Icons name="leftArrow"></Icons>
+            </Button>
+            <h2>
+              {index + 1} of {testObj["flashcards"].length}
+            </h2>
+            <Button
+              onPress={() => setIndex((val) => val + 1)}
+              disabled={index === testObj["flashcards"].length - 1}
+            >
+              <Icons name="rightArrow"></Icons>
+            </Button>
+          </div>
+        </div>
+      ) : (
+        <div className="width-100 flex flex-center ">
+          <Spinner />
+        </div>
+      )}
     </div>
   );
 };
