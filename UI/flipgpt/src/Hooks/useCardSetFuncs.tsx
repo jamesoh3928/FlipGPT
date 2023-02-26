@@ -5,6 +5,19 @@ import { FlashCardSet } from "../Types/FlashCardSet";
 
 export const useCardSetFuncs = () => {
 
+    async function getCardSet(setId:string) {
+        const response = await fetch("http://localhost:4000/cardSets/withSetId/"+setId, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: null
+        }); 
+        return await response.json(); 
+    }
+
+
     async function getCardSets(username:string) {
         const response = await fetch("http://localhost:4000/cardSets/"+username, {
             method: 'GET',
