@@ -34,6 +34,14 @@
   transition: border-bottom-left-radius 0.7s ease-in-out;
 }
 
+.rotatable div {
+  transition: transform 0.7s ease-in-out;
+}
+
+.rotate div {
+  transform: rotate(540deg);
+}
+
 .dropdown-open {
   border-bottom-left-radius: 0px;
 }

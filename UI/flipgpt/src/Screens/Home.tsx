@@ -138,7 +138,7 @@ const Home = () => {
             <textarea
               value={input}
               onChange={(ev) => setInput(ev.currentTarget.value)}
-              className="fs-20"
+              className="fs-20 shadow"
             />
           </div>
         )}

@@ -36,7 +36,7 @@ const Button: React.FC<Props> = ({
         backgroundColor: clicking ? colors.active : colors.inactive,
         ...style,
       }}
-      className="clickable flex flex-center flex-col button-container"
+      className="clickable shadow flex flex-center flex-col button-container"
     >
       {text ? (
         <h2 className="margin-0 f-white fs-20 f-bold">{text}</h2>
