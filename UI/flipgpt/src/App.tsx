@@ -20,6 +20,7 @@ import "./Styles/global.css";
 import UserProvider from "./Context/UserProvider";
 import { AllFlashCards } from "./Screens/AllFlashCards";
 import { FlashCardSet } from "./Types/FlashCardSet";
+import Pricing from "./Screens/Pricing";
 
 function App() {
   // let cardSet : FlashCardSet = 
@@ -34,6 +35,7 @@ function App() {
           <Route path="/" element={<Navigate replace to="/login" />}></Route>
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/pricing" element={<Pricing />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/flash-card-study" element={<FlashCardStudy />} />
           <Route path="/user/cards" element={<AllFlashCards />} />

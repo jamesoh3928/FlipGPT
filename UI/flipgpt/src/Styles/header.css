@@ -23,3 +23,8 @@
   width: 100%;
   height: 100%;
 }
+
+.pricing_link {
+  /* background-color: blue; */
+  margin-right: 75px;
+}

@@ -1,0 +1,33 @@
+.pricing-container { 
+    background-color: white;
+    width: 300px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 10px;
+    height: 300px; 
+    padding: 15px;
+    display: flex; 
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    transition: transform 300ms ease-in-out;
+}
+
+.pricing-container:hover {
+    transform: translateY(-5px);
+}
+
+.pricing-title {
+    color: var(--orange); 
+}
+
+.pricing-price {
+    margin-bottom: 0px;
+    font-size: xx-large;
+    /* color: var(--orange);  */
+}
+
+.per-month-p {
+    font-size: small;
+    margin: 0px;
+    /* color: var(--orange);  */
+}

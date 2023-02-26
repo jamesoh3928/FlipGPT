@@ -1,0 +1,4 @@
+.pricing-boxes {
+    display: flex;
+    flex-flow: row nowrap;
+}
