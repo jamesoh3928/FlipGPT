@@ -6,7 +6,6 @@ import Twilio from "twilio";
 import cors from "cors";
 import card_set_file_dao from "./cardSetDao.js";
 import user_file_dao from "./userFileDao.js";
-// import { Twilio } from 'twilio';
 
 dotenv.config();
 
@@ -26,13 +25,6 @@ const api = new ChatGPTUnofficialProxyAPI({
 
 // initial load of the users from json
 user_file_dao.readJson();
-
-app.use((req, res, next) => {
-  console.log(`Server gets ${req.method} request to -`);
-  console.log(req.url);
-  console.log();
-  next();
-});
 
 app.get("/user/exists/:username", async (req, res) => {
   let username = req.params.username;
@@ -195,7 +187,6 @@ app.post("/topic", async (req, res) => {
       };
     });
 
-  // TODO: the function is not working right now
   const setId = card_set_file_dao.createCardSet(cards, username);
   res.send({
     setId,
@@ -245,8 +236,7 @@ app.post("/notes", async (req, res) => {
   //   flashcards,
   // });
 
-  // TODO: the function is not working right now
-  const setId = card_set_file_dao.createCardSet(cardSet);
+  const setId = card_set_file_dao.createCardSet(cards, username);
   res.send({
     setId,
   });
@@ -255,7 +245,7 @@ app.post("/notes", async (req, res) => {
 
 // TODO:
 // CURL example: curl -i -X POST -H 'Content-Type: application/json' -d '{"prompt": "operating system", "username": "ben"}' http://localhost:4000/topic
-// curl -i -X POST -H 'Content-Type: application/json' -d '{"prompt": "Control unit of CPU directs operation, what to do, with what data, when to do it\nGive the definition of assembler and ISA\nDatapath stores users data and moved program data\nAssembly instruction in translated by assembler into machine code in a 1 to 1 fashion\nPseudo-instruction is translated by the assembler into one or more lines of machine code\nISA is an abstraction from hardware to low level software\nmemorize the fields of instruction formats"}' http://localhost:4000/notes
+// curl -i -X POST -H 'Content-Type: application/json' -d '{"prompt": "Control unit of CPU directs operation, what to do, with what data, when to do it\nGive the definition of assembler and ISA\nDatapath stores users data and moved program data\nAssembly instruction in translated by assembler into machine code in a 1 to 1 fashion\nPseudo-instruction is translated by the assembler into one or more lines of machine code\nISA is an abstraction from hardware to low level software\nmemorize the fields of instruction formats", "username": "ben"}' http://localhost:4000/notes
 // Delete some of console.log
 
 // var corsOptions = {
