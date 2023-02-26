@@ -4,13 +4,13 @@ import API from "../Types/API";
 import { FlashCardSet } from "../Types/FlashCardSet";
 
 export const useCardSets = () => {
-  const onCancelRef = useRef((msg?: string) => { });
+  const onCancelRef = useRef((msg?: string) => {});
   const [cardSets, setCardSets] = useState<FlashCardSet[]>([]);
 
   /**
    * set the on cancel ref for when an error occurs
    */
-  const onCancel = (func: (msg?: string) => {}) => {
+  const onCancel = (func: (msg?: string) => void) => {
     onCancelRef.current = func;
   };
 
@@ -32,6 +32,7 @@ export const useCardSets = () => {
         });
     } catch (e: any) {
       Log.log(`GetByUserName Error - ${e.message}`);
+      onCancelRef.current(e.message);
       return null;
     }
   };
