@@ -8,6 +8,7 @@ import {
   FaChevronCircleRight,
 } from "react-icons/fa";
 import { IoMdSearch, IoMdLogOut } from "react-icons/io";
+import { GiBrickWall } from "react-icons/gi";
 
 type Props = {
   name:
@@ -17,7 +18,8 @@ type Props = {
     | "downArrow"
     | "leftArrow"
     | "rightArrow"
-    | "logout";
+    | "logout"
+    | "spinner";
   size?: number;
   color?: string;
 };
@@ -31,6 +33,7 @@ const Icons: React.FC<Props> = ({ name, size = 25, color = "white" }) => {
     leftArrow: FaChevronCircleLeft,
     rightArrow: FaChevronCircleRight,
     logout: IoMdLogOut,
+    spinner: GiBrickWall,
   };
 
   const SelectedIcon = iconMap[name];

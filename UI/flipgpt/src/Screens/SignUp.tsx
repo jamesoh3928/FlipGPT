@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Images from "../assets/images/Images";
 import Button from "../Components/Button";
 import Input from "../Components/Input";
+import { Spinner } from "../Components/Spinner";
 import USER_API from "../Context/UserDatabase";
 import { useUserContext } from "../Context/UserProvider";
 import Log from "../Log";
@@ -110,7 +111,10 @@ function SignUp() {
           </div>
 
           <div className="margin-vertical-25 ">
-            <Button onPress={submit} text={loading ? "Loading..." : "Login"} />
+            <Button onPress={submit} text={loading ? undefined : "Login"}>
+              {" "}
+              <Spinner />
+            </Button>
           </div>
         </div>
       </div>
