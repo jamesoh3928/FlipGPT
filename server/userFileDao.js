@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 
+// TODO: add synchronized calls for map
 let userCache = new Map(); 
 //const fs = require('fs');
 
@@ -50,22 +51,32 @@ function getUser(username) {
 
 
 // update the user
-function updateUser() {
-
+function updateUser(username, user) {
+    if(!userExists(username)){
+        return;
+    }
+    userCache.set(username, user);
     writeJson(); 
 }
 
-
-// delete the user
-function deleteUser() {
-
-    writeJson(); 
-}
+// TODO
+// // delete the user
+// function deleteUser(username) {
+//     if(userCache.delete(username)){
+//         writeJson(); 
+//     }
+// }
 
 
 // create the user 
-function createUser() {
-
+function createUser(username, password, number) {
+    if(userExists(username)) return;
+    const user = {
+        username: username,
+        password: password,
+        phoneNumber: number
+    }
+    userCache.set(username, user);
     writeJson(); 
 }
 
@@ -75,7 +86,7 @@ const user_file_dao = {
     userExists,
     getUser, 
     updateUser, 
-    deleteUser, 
+    // deleteUser, 
     createUser
 }
 
