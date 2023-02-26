@@ -49,7 +49,7 @@ function updateUser(user) {
     if(!userExists(user)){
         return;
     }
-    const updatedUser = userCache.set(username, user);
+    const updatedUser = userCache.set(user.username, user);
     writeJson(); 
     return updatedUser;
 }
