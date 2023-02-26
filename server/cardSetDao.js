@@ -32,7 +32,7 @@ function getCardSets(username) {
 }
 
 // get 1 card set
-function getCardSets(setId) {
+function getCardSet(setId) {
     for(var cardSet in cardSetCache) {
         if(cardSet.setId === setId) {
             return cardSet; 
