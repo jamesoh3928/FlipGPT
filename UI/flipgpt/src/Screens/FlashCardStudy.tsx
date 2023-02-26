@@ -118,7 +118,7 @@ const FlashCardStudy: React.FC = () => {
           <div style={{ height: 100 }} />
           <div
             className="flex flex-center"
-            style={{ justifyContent: "space-evenly", width: "50%" }}
+            style={{ justifyContent: "space-evenly", width: "75%" }}
           >
             {/* TODO: Set flip to front when button is clicked */}
             <Button

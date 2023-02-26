@@ -24,10 +24,16 @@ const FlashCard: React.FC<Props> = ({
     >
       <div className={`flash-card-content`}>
         <div className="flash-card front clickable">
-          <p className="f-30 f-bold flash-card-text">{front}</p>
+          <h2 className="f-40 f-bold flash-card-text">
+            <span />
+            {front}
+          </h2>
         </div>
         <div className="flash-card back clickable">
-          <p className="f-30 f-bold flash-card-text">{back}</p>
+          <h2 className="f-40 f-bold flash-card-text">
+            <span />
+            {back}
+          </h2>
         </div>
       </div>
     </div>
