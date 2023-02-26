@@ -70,21 +70,22 @@ const FlashCardStudy: React.FC = () => {
 
   return (
     <div className="relative flex flex-col flex-center">
-      <Button
+      {/* <Button
         onPress={goBack}
         style={{ position: "absolute", top: "25px", left: "25px" }}
       >
         <Icons name="leftArrow" />
-      </Button>
+      </Button> */}
       {cardSet !== null ? (
         <div className="flex flex-col flex-center">
+          <div style={{ height: 50 }} />
           <div>
             <h1 className="f-white">{title}</h1>
-            <h3 className="f-white">
+            <h2 className="f-white flex flex-center">
               {index + 1} of {cards.length}
-            </h3>
+            </h2>
           </div>
-          <div style={{ height: 100 }} />
+          <div style={{ height: 10 }} />
           <div className="width-100 flex flex-row flex-center">
             <Button
               onPress={() => {
@@ -111,7 +112,7 @@ const FlashCardStudy: React.FC = () => {
               <Icons name="rightArrow"></Icons>
             </Button>
           </div>
-          <div style={{ height: 100 }} />
+          <div style={{ height: 25 }} />
           <div className="flex flex-center" style={{ width: "75%" }}>
             {index === cards.length - 1 && (
               <div className="flex flex-center">
