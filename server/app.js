@@ -23,17 +23,66 @@ const api = new ChatGPTUnofficialProxyAPI({
 // Users request handling
 // // // // // // // // // // // // // // // // // //
 
-let userCache = new Map();
+// initial load of the users from json
+user_file_dao.readJson(); 
+
+app.get("/user/exists/:username", async (req, res) => {
+  let username = req.params.username; 
+  res.send(JSON.stringify(user_file_dao.userExists(username))); 
+}); 
+
+
+app.get("/user/:username", async (req, res) => {
+  let username = req.params.username; 
+  res.send(JSON.stringify(user_file_dao.getUser(username))); 
+}); 
+
+
+// body should be the full user object
+app.post("/user", async (req, res) => {
+  let user = req.body; 
+  res.send(JSON.stringify(
+    user_file_dao.updateUser(user) 
+  )); 
+}); 
+
+
+// body should be the full user object 
+app.create("/user", async (req, res) => {
+  let user = req.body; 
+  res.send(JSON.stringify(
+    user_file_dao.createUser(user) 
+  )); 
+}); 
+
+
 
 // // // // // // // // // // // // // // // // // //
 // CardSets request handling
 // // // // // // // // // // // // // // // // // //
+
+// initial load of the cardSets from json
+card_set_file_dao.readJson(); 
 
 // use body of {"setId": "string"}
 app.post("/cardSets", async (req, res) => {
   let id = req.body.setId; 
   card_set_file_dao.updateLastDate(id); 
   res.send(JSON.stringify("SUCCESS")); 
+}); 
+
+
+app.get("/cardSets/:username", async (req, res) => {
+  let username = req.params.username; 
+  res.send(JSON.stringify(card_set_file_dao.getCardSets(username))); 
+});
+
+
+// use body of full cardSet 
+app.create("/cardSets", async (req, res) => {
+  let cardSet = req.body; 
+  let created = card_set_file_dao.createCardSet(cardSet); 
+  res.send(JSON.stringify(created)); 
 }); 
 
 // // // // // // // // // // // // // // // // // //
