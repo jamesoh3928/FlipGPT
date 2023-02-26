@@ -73,6 +73,8 @@ function Login() {
               <span className="f-orange">Create Account</span>
             </Link>
           </p>
+
+          
         </div>
 
         <div className="input-boxes">
@@ -94,6 +96,14 @@ function Login() {
               onChange={setPassword}
             />
           </div>
+          {/* <div className="flex flex-center flex-col" style={{ marginTop: 20 }}>
+            <p className="margin-10 f-bold fs-20 f-white">
+              {" "}
+                View our
+              
+                plans
+            </p>
+          </div> */}
 
           <div className="margin-vertical-25 ">
             <Button onPress={submit} text={loading ? undefined : "Login"}>

@@ -14,7 +14,7 @@ const Header: React.FC<Props> = (props) => {
   const { user, signOut } = useUserContext();
   return (
     <div className="flex header-container relative bg-orange">
-      <div className="relative">
+      <div className="relative ">
         <div className="logo absolute">
           <img src={Images.logo} alt="logo" />
         </div>
@@ -24,6 +24,7 @@ const Header: React.FC<Props> = (props) => {
           </h1>
         </Link>
       </div>
+        
 
       {user ? (
         <div
@@ -41,7 +42,15 @@ const Header: React.FC<Props> = (props) => {
             <Icons size={35} name="logout" />
           </div>
         </div>
-      ) : null}
+      ) : (
+        <div className="pricing_link">
+          <h1>
+            <Link to={"/pricing"} className="link">
+              <span className="f-white"> Pricing </span>
+            </Link>
+          </h1>
+        </div>
+      )}
     </div>
   );
 };
