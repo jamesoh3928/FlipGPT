@@ -112,7 +112,6 @@ function SignUp() {
 
           <div className="margin-vertical-25 ">
             <Button onPress={submit} text={loading ? undefined : "Login"}>
-              {" "}
               <Spinner />
             </Button>
           </div>
