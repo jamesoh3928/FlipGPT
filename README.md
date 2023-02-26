@@ -1,4 +1,6 @@
 # FlipGPT
+<!-- Display image file FlipGPT.png -->
+![Logo](FlipGPT.png)
 ## TODO List
 1. Backend DB - Ryan, Ben
 3. Use parsed data to display flashcards
