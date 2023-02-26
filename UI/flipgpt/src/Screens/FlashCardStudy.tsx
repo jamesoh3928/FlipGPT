@@ -61,8 +61,14 @@ const FlashCardStudy: React.FC = () => {
     });
 
     sendTwilioNotification(
+<<<<<<< Updated upstream
       `Good Job Finishing Study Set ${title}. We'll remind you to check back and review in a week from now`,
       user.phoneNumber
+=======
+      `Good Job Finishing Study Set ${cardSet.title}. We'll remind you to check back and review in a week from now`,
+      // user.phoneNumber
+      `17163469684`
+>>>>>>> Stashed changes
     );
 
     navigation("/");
