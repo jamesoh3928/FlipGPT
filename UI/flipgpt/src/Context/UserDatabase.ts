@@ -46,7 +46,6 @@ async function createUser(user: User) {
   try {
     let retUser = await getUser(user.userName);
     if (retUser !== null) {
-        console.log("retUser is not null: "+retUser);
       response.success = false;
       response.errorMessage = "Username is already taken.";
       response.user = null;
