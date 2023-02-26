@@ -11,12 +11,13 @@ import DropDown from "../Components/DropDown";
 import CHATGPT_API from "../Context/ChatGptAPI";
 import Log from "../Log";
 import { FlashCard } from "../Types/FlashCard";
+import { randomInt } from "crypto";
 
 const TOPICS: GPTopics[] = ["Notes", "Topic"];
 
 const Home = () => {
   const navigation = useNavigate();
-  const { user } = useUserContext();
+  const { user, updateUser } = useUserContext();
   const [loading, setLoading] = useState(false);
   const [selectedTopic, setSelectedTopic] = useState<GPTopics>("Topic");
 
@@ -30,7 +31,7 @@ const Home = () => {
    * Submit the query to the ChatGPT api
    */
   const submit = async () => {
-    if (!validate()) return;
+    if (!validate() || !user) return;
     setLoading(true);
 
     let response: { flashCards: FlashCard[] } | undefined = undefined;
@@ -41,9 +42,19 @@ const Home = () => {
       response = await CHATGPT_API.generateFlashcardNotes(input);
     }
 
-    // let response = await CHATGPT_API.generateFlashcardNotes(input);
-
     if (!response) return setLoading(false);
+
+    user.cardSets.push({
+      setId: randomInt(100),
+      title: input,
+      cards: response.flashCards,
+      dateLastTaken: new Date(),
+      username: user.userName,
+    });
+
+    await updateUser(user);
+
+    goToFlashCard(response.flashCards);
 
     setLoading(false);
   };
@@ -66,21 +77,18 @@ const Home = () => {
    * Select a topic
    */
   const onSelect = (topic: GPTopics) => {
-    setSelectedTopic((value) => (value == "Notes" ? "Topic" : "Notes"));
+    setSelectedTopic(topic);
     setInput("");
   };
 
   /**
    * Go to flashcard
    */
-  const goToFlashCard = () => {
+  const goToFlashCard = (cards: FlashCard[]) => {
     navigation("/flash-card-study", {
       state: {
-        studyTopic: "Example Topic",
-        cards: [
-          { front: "front1", back: "back1" },
-          { front: "front2", back: "back2" },
-        ],
+        studyTopic: input,
+        cards,
       },
     });
   };
