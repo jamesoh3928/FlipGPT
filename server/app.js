@@ -40,16 +40,15 @@ app.get("/user/:username", async (req, res) => {
 
 
 // body should be the full user object
-app.post("/user", async (req, res) => {
+app.put("/user", async (req, res) => {
   let user = req.body; 
   res.send(JSON.stringify(
     user_file_dao.updateUser(user) 
   )); 
 }); 
 
-
 // body should be the full user object 
-app.create("/user", async (req, res) => {
+app.post("/user", async (req, res) => {
   let user = req.body; 
   res.send(JSON.stringify(
     user_file_dao.createUser(user) 
@@ -66,7 +65,7 @@ app.create("/user", async (req, res) => {
 card_set_file_dao.readJson(); 
 
 // use body of {"setId": "string"}
-app.post("/cardSets", async (req, res) => {
+app.put("/cardSets", async (req, res) => {
   let id = req.body.setId; 
   card_set_file_dao.updateLastDate(id); 
   res.send(JSON.stringify("SUCCESS")); 
@@ -80,7 +79,7 @@ app.get("/cardSets/:username", async (req, res) => {
 
 
 // use body of full cardSet 
-app.create("/cardSets", async (req, res) => {
+app.post("/cardSets", async (req, res) => {
   let cardSet = req.body; 
   let created = card_set_file_dao.createCardSet(cardSet); 
   res.send(JSON.stringify(created)); 
