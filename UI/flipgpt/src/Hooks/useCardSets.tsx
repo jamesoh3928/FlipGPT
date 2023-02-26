@@ -35,13 +35,13 @@ export const useCardSets = () => {
     try {
       fetch(API + `cardSets/id/${setId}`)
         .then((response) => {
-          Log.log(`Response to Json`, false);
-          Log.log(response);
+          // Log.log(`Response to Json`, false);
+          // Log.log(response);
           return response.json();
         })
         .then((json) => {
-          Log.log(`Response JSON:`, false);
-          Log.log(json);
+          // Log.log(`Response JSON:`, false);
+          // Log.log(json);
           return setCardSets(json);
         });
     } catch (e: any) {

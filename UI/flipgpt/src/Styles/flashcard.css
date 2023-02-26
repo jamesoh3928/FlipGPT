@@ -42,8 +42,12 @@ h2 {
   align-items: center;
   justify-content: center;
   backface-visibility: hidden;
-  background-color: var(--white);
+  /* background-color: var(--white); */
   border-radius: 30px;
+  background-image: url("../assets/images/FlashCard.png");
+  opacity: 0.75;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .flash-card.front {
@@ -57,6 +61,5 @@ h2 {
 
 .flash-card-text {
   text-align: center;
-  font-weight: bold;
   padding: 15px;
 }

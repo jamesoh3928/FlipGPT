@@ -1,55 +1,55 @@
-import * as fs from 'fs';
+import * as fs from "fs";
 
 let cardSetCache = [];
 
 // load the initial cache
 function readJson() {
-    let jsonString = fs.readFileSync("cardSets.json");
-    cardSetCache = JSON.parse(jsonString.toString());
+  let jsonString = fs.readFileSync("cardSets.json");
+  cardSetCache = JSON.parse(jsonString.toString());
 }
 
 // write the cache to the json file
 function writeJson() {
-    let jsonString = JSON.stringify(cardSetCache);
-    fs.writeFile("cardSets.json", jsonString, err => {
-        if (err) {
-            console.log("Error writing to cardset file: ", err);
-        }
-    });
+  let jsonString = JSON.stringify(cardSetCache);
+  fs.writeFile("cardSets.json", jsonString, (err) => {
+    if (err) {
+      console.log("Error writing to cardset file: ", err);
+    }
+  });
 }
 
 // get the card set from the cache
 function getCardSets(username) {
-    let userSets = [];
-    for (let i = 0; i < cardSetCache.length; i++) {
-        if (cardSetCache[i].username == username) {
-            userSets.push(cardSetCache[i]);
-        }
+  let userSets = [];
+  for (let i = 0; i < cardSetCache.length; i++) {
+    if (cardSetCache[i].username == username) {
+      userSets.push(cardSetCache[i]);
     }
-    return userSets;
+  }
+  return userSets;
 }
 
 // get 1 card set
 function getCardSet(setId) {
-    for (let i = 0; i < cardSetCache.length; i++) {
-        if (cardSetCache[i].setId == setId) {
-            console.log("found set id");
-            return cardSetCache[i];
-        }
+  for (let i = 0; i < cardSetCache.length; i++) {
+    if (cardSetCache[i].setId == setId) {
+      console.log("found set id");
+      return cardSetCache[i];
     }
-    return null;
+  }
+  return null;
 }
 
 // update the card set
 function updateLastDate(cardSetId) {
-    for (let i = 0; i < cardSetCache.length; i++) {
-        if (cardSetCache[i].setId == cardSetId) {
-            cardSetCache[i].dateLastTaken = new Date(); // sets the time to now 
-            writeJson();
-            return cardSetCache[i];
-        }
+  for (let i = 0; i < cardSetCache.length; i++) {
+    if (cardSetCache[i].setId == cardSetId) {
+      cardSetCache[i].dateLastTaken = new Date(); // sets the time to now
+      writeJson();
+      return cardSetCache[i];
     }
-    return null;
+  }
+  return null;
 }
 
 // create the card set and return the id of new set
@@ -72,13 +72,20 @@ function createCardSet(cards, username) {
 }
 
 function checkCardsetNumber(username) {
-    let count = 0;
-    for (let i = 0; i < cardSetCache.length; i++) {
-        if (cardSetCache[i].username == username) {
-            count++;
-        }
+  let count = 0;
+  for (let i = 0; i < cardSetCache.length; i++) {
+    if (
+      username == "CTB" ||
+      username == "James" ||
+      username == "Ryan" ||
+      username == "Ben"
+    )
+      continue;
+    if (cardSetCache[i].username == username) {
+      count++;
     }
-    return count < 3;
+  }
+  return count < 3;
 }
 
 function getUniqueId() {
@@ -93,13 +100,13 @@ function getUniqueId() {
 // }
 
 const card_set_file_dao = {
-    readJson,
-    writeJson,
-    getCardSet,
-    getCardSets,
-    updateLastDate,
-    createCardSet
-    // deleteCardSet, 
+  readJson,
+  writeJson,
+  getCardSet,
+  getCardSets,
+  updateLastDate,
+  createCardSet,
+  // deleteCardSet,
 };
 
 export default card_set_file_dao;
