@@ -52,15 +52,15 @@ const Home = () => {
     /**
      * want to remove
      */
-    user.cardSets.push({
-      setId: Math.random() * 100,
-      title: input,
-      cards: response.flashCards,
-      dateLastTaken: new Date(),
-      username: user.userName,
-    });
+    // user.cardSets.push({
+    //   setId: Math.random() * 100,
+    //   title: input,
+    //   cards: response.flashCards,
+    //   dateLastTaken: new Date(),
+    //   username: user.userName,
+    // });
 
-    await updateUser(user);
+    // await updateUser(user);
 
     goToFlashCard(response.flashCards);
 

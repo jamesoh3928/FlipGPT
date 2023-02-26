@@ -3,12 +3,13 @@ import { useNavigate } from "react-router-dom";
 import Button from "../Components/Button";
 import FlashCard from "../Components/FlashCard";
 import { useUserContext } from "../Context/UserProvider";
+import { FlashCardSet } from "../Types/FlashCardSet";
 
 export const AllFlashCards = () => {
   const navigation = useNavigate();
   const { user } = useUserContext();
 
-  const flashCardSets = user?.cardSets ?? [];
+  const flashCardSets: FlashCardSet[] = [];
 
   /**
    * Navigate to the flash card study page for specified card set

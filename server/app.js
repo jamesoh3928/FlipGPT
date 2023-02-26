@@ -36,28 +36,30 @@ app.use((req, res, next) => {
 
 app.get("/user/exists/:username", async (req, res) => {
   let username = req.params.username;
-  res.send(JSON.stringify(user_file_dao.userExists(username)));
+  let result = user_file_dao.userExists(username);
+  res.send({
+    result,
+  });
 });
 
 app.get("/user/:username", async (req, res) => {
   let username = req.params.username;
-  res.send(JSON.stringify(user_file_dao.getUser(username)));
+  let user = user_file_dao.getUser(username);
+  res.send(user);
 });
 
 // body should be the full user object
 app.put("/user", async (req, res) => {
   let user = req.body;
-  res.send(JSON.stringify(user_file_dao.updateUser(user)));
+  let newUser = user_file_dao.updateUser(user);
+  res.send(newUser);
 });
 
 // body should be the full user object
 app.post("/user", async (req, res) => {
   let user = req.body;
   let newUser = user_file_dao.createUser(user);
-  console.log();
-  console.log(newUser);
-  console.log();
-  res.send(JSON.stringify(newUser));
+  res.send(newUser);
 });
 
 // // // // // // // // // // // // // // // // // //
