@@ -21,17 +21,6 @@ export const useUserFuncs = () => {
     }
   }
 
-
-    async function userExists(username:string) {
-        const response = await fetch("http://localhost:4000/user/exists/"+username, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: null
-        }); 
-        return response; 
   async function userExists(username: string) {
     try {
       const response = await fetch(
@@ -50,7 +39,7 @@ export const useUserFuncs = () => {
       Log.log(`Get User Error: ${e.message}`);
       return null;
     }
-
+  }
 
   async function updateUser(user: User) {
     try {
@@ -125,18 +114,5 @@ export const useUserFuncs = () => {
     }
   };
 
-    return {createUser, 
-        deleteUser, 
-        getUser, 
-        updateUser,
-        login
-    }; 
-}
-
-
-
-
-
-const USER_API = {
-     
-}
+  return { createUser, deleteUser, getUser, updateUser, login };
+};
