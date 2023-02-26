@@ -14,7 +14,7 @@ function writeJson() {
 
 
 // get the user from the cache
-function userExists(username: String) {
+function userExists(username) {
     userCache.has(username)
 }
 
@@ -35,12 +35,14 @@ function updateUser() {
 // delete the user
 function deleteUser() {
 
+    writeJson(); 
 }
 
 
 // create the user 
 function createUser() {
 
+    writeJson(); 
 }
 
 const user_file_dao = {
