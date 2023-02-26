@@ -1,9 +1,10 @@
+import * as fs from 'fs';
 
 let userCache = new Map(); 
+//const fs = require('fs');
 
 // load the initial cache
 function readJson() {
-    const fs = require("fs");
 
     fs.readFile("users.json", (err, jsonString) => {
         if(err){
@@ -11,8 +12,9 @@ function readJson() {
             return;
         }
         try{
-            const user = JSON.parse(jsonString);
-            console.log("Username:", user.username);
+            for(user in JSON.parse(jsonString)){
+                userCache.set(user.username, user);
+            }
         }catch(err){
             console.log("Error parsing JSON string: ", err);
         }
@@ -22,7 +24,14 @@ function readJson() {
 
 // write the cache to the json file
 function writeJson() {
-
+    for(user in userCache){
+        const jsonString = JSON.stringify(user);
+        fs.writeFile('users.json', jsonString, err => {
+            if(err){
+                console.log("Error writing to file: ", err);
+            }
+        })
+    }
 }
 
 
