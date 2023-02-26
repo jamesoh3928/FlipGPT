@@ -119,6 +119,11 @@ async function login(username: string, password: string) {
   }
 }
 
+
+function getCardSets(user: User) {
+    return user.cardSets; 
+}
+
 // function logout() {
 //     // currentUser = null;
 // }
@@ -131,6 +136,7 @@ const USER_API = {
   getUser,
   updateUser,
   login,
+  getCardSets
 };
 
 export default USER_API;
