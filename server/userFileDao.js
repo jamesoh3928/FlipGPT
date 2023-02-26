@@ -6,30 +6,24 @@ let userCache = new Map();
 
 // load the initial cache
 function readJson() {
-
-    fs.readFile("users.json", (err, jsonString) => {
-        if(err){
-            console.log("File failed to read: ", err);
-            return;
-        }
-        try{
-            for(user in JSON.parse(jsonString)){
-                userCache.set(user.username, user);
-            }
-        }catch(err){
-            console.log("Error parsing JSON string: ", err);
-        }
-    });
+    let jsonString = fs.readFileSync("users.json"); 
+    let users = JSON.parse(jsonString.toString());
+    console.log(users); 
+    for(let user of users) {
+        userCache.set(user.username, user);
+    }
 }
 
 
 // write the cache to the json file
 function writeJson() {
     let userList = []; 
-    for(user in userCache){
-        userList.push(user);
+    for (let [key, value] of userCache) {
+        userList.push(value); 
     }
+    // console.log(userList); 
     const jsonString = JSON.stringify(userList);
+    console.log(jsonString)
     fs.writeFile('users.json', jsonString, err => {
         if(err){
             console.log("Error writing to file: ", err);

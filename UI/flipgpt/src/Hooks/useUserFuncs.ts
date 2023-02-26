@@ -26,7 +26,6 @@ export const useUserFuncs = () => {
             },
             body: null
         }); 
-        response.
         return response; 
     }
 

@@ -4,22 +4,14 @@ let cardSetCache = [];
 
 // load the initial cache
 function readJson() {
-    fs.readFile("cardSets.json", (err, jsonString) => {
-        if(err) {
-            console.log("File failed to read: ", err); 
-            return; 
-        }
-        try {
-            cardSetCache = JSON.parse(jsonString); 
-        } catch (err) {
-            console.log("Error in parsing cardset JSON string: " + err); 
-        }
-    }); 
+    let jsonString = fs.readFileSync("cardSets.json"); 
+    cardSetCache = JSON.parse(jsonString.toString()); 
 }
 
 
 // write the cache to the json file
 function writeJson() {
+    let jsonString = JSON.stringify(cardSetCache); 
     fs.writeFile("cardSets.json", jsonString, err => {
         if(err) {
             console.log("Error writing to cardset file: ", err); 
