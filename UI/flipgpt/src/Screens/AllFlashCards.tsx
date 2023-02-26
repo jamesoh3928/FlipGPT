@@ -16,17 +16,12 @@ export const AllFlashCards = () => {
   const {
     state: { cardSets },
     getByUserName,
-    getById,
   } = useCardSets();
 
   useEffect(() => {
-    if (!user)
-      navigation("/login");
-    else {
-      Log.log(`Calling get by username ${user.userName}`);
-      getByUserName(user.userName);
-    }
-  }, []);
+    if (!user) return navigation("/login");
+    getByUserName(user.userName);
+  }, [user]);
 
   const flashCardSets: FlashCardSet[] = [];
 
@@ -54,16 +49,17 @@ export const AllFlashCards = () => {
             </Link>
           </div>
         ) : (
-          cardSets.filter((set) => set.cards.length > 0).map((set) => (
-            <div className="margin-vertical-25">
-              <FlashCard
-                onPress={() => navigateToCardSet(set.setId)}
-                front={set.cards[0].front}
-                back={set.cards[0].back}
-              ></FlashCard>
-            </div>
-
-          ))
+          cardSets
+            .filter((set) => set.cards.length > 0)
+            .map((set) => (
+              <div className="margin-vertical-25">
+                <FlashCard
+                  onPress={() => navigateToCardSet(set.setId)}
+                  front={set.cards[0].front}
+                  back={set.cards[0].back}
+                ></FlashCard>
+              </div>
+            ))
         )}
       </div>
     </div>

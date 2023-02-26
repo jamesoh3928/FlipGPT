@@ -36,13 +36,12 @@ const FlashCardStudy: React.FC = () => {
   const title = cardSet?.title ?? "";
 
   useEffect(() => {
-    if (!user) return navigation("/login");
     getById(setId);
   }, []);
 
   useEffect(() => {
-    Log.log(cardSet);
-  }, [cardSet]);
+    if (!user) return navigation("/login");
+  }, [user]);
 
   /**
    * Navigate back to the last page
