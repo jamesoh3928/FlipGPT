@@ -22,10 +22,10 @@ function writeJson() {
 
 // get the card set from the cache
 function getCardSets(username) {
-    userSets = []; 
-    for(var cardSet in cardSetCache) {
-        if(cardSet.username === username) {
-            userSets.push(cardSet); 
+    let userSets = []; 
+    for(let i = 0; i < cardSetCache.length; i++) {
+        if(cardSetCache[i].username == username) {
+            userSets.push(cardSetCache[i]);  
         }
     }
     return userSets; 
@@ -33,9 +33,10 @@ function getCardSets(username) {
 
 // get 1 card set
 function getCardSet(setId) {
-    for(var cardSet in cardSetCache) {
-        if(cardSet.setId === setId) {
-            return cardSet; 
+    for(let i = 0; i < cardSetCache.length; i++) {
+        if(cardSetCache[i].setId == setId) {
+            console.log("found set id"); 
+            return cardSetCache[i]; 
         }
     }
     return null; 
@@ -44,13 +45,13 @@ function getCardSet(setId) {
 
 // update the card set
 function updateLastDate(cardSetId) {
-    for(var cardSet in cardSetCache) {
-        if(cardSet.setId === cardSetId) {
-            cardSet.updateLastDate = new Date(); // sets the time to now 
+    for(let i = 0; i < cardSetCache.length; i++) {
+        if(cardSetCache[i].setId == cardSetId) {
+            cardSetCache[i].dateLastTaken = new Date(); // sets the time to now 
             writeJson();
-            return cardSet;
+            return cardSetCache[i];
         }
-    } 
+    }
     return null; 
 }
 

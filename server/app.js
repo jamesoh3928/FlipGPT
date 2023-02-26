@@ -81,7 +81,9 @@ app.get("/cardSets/:username", async (req, res) => {
 
 app.get("/cardSets/withSetId/:setId", async (req, res) => {
   let setid = req.params.setId;
-  res.send(JSON.stringify(card_set_file_dao.getCardSet(setid)));
+  let cardset = card_set_file_dao.getCardSet(setid); 
+  console.log(cardset); 
+  res.send(JSON.stringify(cardset));
 });
 
 // use body of full cardSet
