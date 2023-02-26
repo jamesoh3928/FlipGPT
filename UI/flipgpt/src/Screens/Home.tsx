@@ -8,10 +8,17 @@ import Button from "../Components/Button";
 import Icons from "../Components/Icons";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../Context/UserProvider";
+import DropDown from "../Components/DropDown";
+import { validateBody } from "twilio/lib/webhooks/webhooks";
+import CHATGPT_API from "../Context/ChatGptAPI";
+import Log from "../Log";
+
+const TOPICS: GPTopics[] = ["Notes", "Topic"];
 
 const Home = () => {
   const navigation = useNavigate();
   const { user } = useUserContext();
+  const [loading, setLoading] = useState(false);
   const [selectedTopic, setSelectedTopic] = useState<GPTopics>("Topic");
 
   const [input, setInput] = useState("");
@@ -19,6 +26,37 @@ const Home = () => {
   useEffect(() => {
     if (!user) navigation("/login");
   }, [user]);
+
+  /**
+   * Submit the query to the ChatGPT api
+   */
+  const submit = async () => {
+    if (!validate()) return;
+    setLoading(true);
+
+    let response = await CHATGPT_API.generateFlashcardNotes(input);
+
+    if (!response) return setLoading(false);
+
+    Log.log(`Response`, false);
+    Log.log(response);
+
+    setLoading(false);
+  };
+
+  /**
+   * Validate that the length of the notes is not longer than 3000 words
+   */
+  const validate = () => {
+    if (input.length == 0) {
+      return false;
+    }
+    if (selectedTopic == "Topic") return true;
+
+    if (input.length > 3000) return false;
+
+    return true;
+  };
 
   /**
    * Select a topic
@@ -51,7 +89,13 @@ const Home = () => {
         </h1>
       )}
 
-      <div className="inputs-container margin-vertical-15 flex flex-row ">
+      <DropDown
+        value={selectedTopic}
+        onChange={(val: string) => onSelect(val as GPTopics)}
+        values={TOPICS}
+      />
+
+      <div className="inputs-container margin-vertical-30 flex flex-row flex-center">
         {selectedTopic == "Topic" ? (
           <Input
             value={input}
@@ -60,7 +104,7 @@ const Home = () => {
             placeholder={"Enter Topic..."}
           />
         ) : (
-          <div className="relative">
+          <div className="relative notes-container">
             <textarea
               value={input}
               onChange={(ev) => setInput(ev.currentTarget.value)}
@@ -70,7 +114,11 @@ const Home = () => {
         )}
       </div>
 
-      <Button onPress={goToFlashCard}>
+      <Button
+        text={loading ? "Loading..." : undefined}
+        disabled={loading}
+        onPress={submit}
+      >
         <Icons name="search" color="white" />
       </Button>
     </div>

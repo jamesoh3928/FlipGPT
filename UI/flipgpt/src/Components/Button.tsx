@@ -31,7 +31,7 @@ const Button: React.FC<Props> = ({
     <div
       onMouseEnter={() => setClicking(true)}
       onMouseLeave={() => setClicking(false)}
-      onClick={onPress}
+      onClick={disabled ? undefined : onPress}
       style={{
         backgroundColor: clicking ? colors.active : colors.inactive,
         ...style,

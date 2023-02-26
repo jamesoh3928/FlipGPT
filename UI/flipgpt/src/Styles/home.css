@@ -11,6 +11,10 @@
   padding: 0.5em;
 }
 
+.notes-container {
+  width: 100%;
+}
+
 .inputs-container textarea:focus {
   border: none;
   outline: none;

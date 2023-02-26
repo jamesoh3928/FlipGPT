@@ -40,6 +40,9 @@ html {
 .bg-orange {
   background-color: var(--orange);
 }
+.bg-white {
+  background-color: var(--white);
+}
 .bg-purple {
   background-color: var(--purple);
 }
@@ -122,6 +125,9 @@ html {
 .margin-25 {
   margin: 25px;
 }
+.margin-30 {
+  margin: 30px;
+}
 
 .margin-vertical-0 {
   margin: 0px 0px;
@@ -140,6 +146,9 @@ html {
 }
 .margin-vertical-25 {
   margin: 25px 0px;
+}
+.margin-vertical-30 {
+  margin: 30px 0px;
 }
 
 .padding-0 {
