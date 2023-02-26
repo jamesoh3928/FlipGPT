@@ -40,7 +40,7 @@ function writeJson() {
 
 // get the user from the cache
 function userExists(username) {
-    userCache.has(username);
+    return userCache.has(username);
 }
 
 
@@ -51,12 +51,13 @@ function getUser(username) {
 
 
 // update the user
-function updateUser(username, user) {
-    if(!userExists(username)){
+function updateUser(user) {
+    if(!userExists(user)){
         return;
     }
-    userCache.set(username, user);
+    const updatedUser = userCache.set(username, user);
     writeJson(); 
+    return updatedUser;
 }
 
 // TODO
@@ -70,14 +71,14 @@ function updateUser(username, user) {
 
 // create the user 
 function createUser(username, password, number) {
-    if(userExists(username)) return;
     const user = {
         username: username,
         password: password,
         phoneNumber: number
     }
-    userCache.set(username, user);
+    const newUser = userCache.set(username, user);
     writeJson(); 
+    return newUser;
 }
 
 const user_file_dao = {
