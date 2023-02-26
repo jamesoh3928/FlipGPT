@@ -27,6 +27,13 @@ const api = new ChatGPTUnofficialProxyAPI({
 // initial load of the users from json
 user_file_dao.readJson();
 
+app.use((req, res, next) => {
+  console.log(`Server gets request to -`);
+  console.log(req.url);
+  console.log();
+  next();
+});
+
 app.get("/user/exists/:username", async (req, res) => {
   let username = req.params.username;
   res.send(JSON.stringify(user_file_dao.userExists(username)));
@@ -46,7 +53,11 @@ app.put("/user", async (req, res) => {
 // body should be the full user object
 app.post("/user", async (req, res) => {
   let user = req.body;
-  res.send(JSON.stringify(user_file_dao.createUser(user)));
+  let newUser = user_file_dao.createUser(user);
+  console.log();
+  console.log(newUser);
+  console.log();
+  res.send(JSON.stringify(newUser));
 });
 
 // // // // // // // // // // // // // // // // // //
