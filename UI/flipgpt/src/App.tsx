@@ -18,6 +18,7 @@ import FlashCardStudy from "./Screens/FlashCardStudy";
 import Header from "./Components/Header";
 import "./Styles/global.css";
 import UserProvider from "./Context/UserProvider";
+import { AllFlashCards } from "./Screens/AllFlashCards";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/flash-card-study" element={<FlashCardStudy />} />
+          <Route path="/user/:id/cards" element={<AllFlashCards />} />
         </Routes>
       </div>
     </UserProvider>

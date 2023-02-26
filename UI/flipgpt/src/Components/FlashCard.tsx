@@ -5,14 +5,15 @@ import "../Styles/flashcard.css";
 type Props = {
   front: string;
   back: string;
+  onPress?: () => void;
 };
 
-const FlashCard: React.FC<Props> = ({ front, back }) => {
+const FlashCard: React.FC<Props> = ({ front, back, onPress }) => {
   const [flipped, setFlipped] = useState(false);
 
   return (
     <div
-      onClick={() => setFlipped((val) => !val)}
+      onClick={() => (onPress ? onPress() : setFlipped((val) => !val))}
       className={`flash-card-container ${flipped ? `flipped` : ``}`}
     >
       <div className={`flash-card-content`}>

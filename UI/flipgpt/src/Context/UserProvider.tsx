@@ -1,7 +1,7 @@
 import React, { useContext, createContext, useState, useRef } from "react";
+import { useUserFuncs } from "../Hooks/useUserFuncs";
 
 import { User } from "../Types/User";
-import USER_API from "./UserDatabase";
 
 type ContextType = {
   user: User | null;
@@ -37,6 +37,7 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const onCancelRef = useRef((msg?: string) => {});
+  const userFuncs = useUserFuncs();
   const [user, setUser] = useState<User | null>(null);
 
   /**
@@ -50,7 +51,7 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
    * login a specified user
    */
   const login = async (options: { userName: string; password: string }) => {
-    let response = await USER_API.login(options.userName, options.password);
+    let response = await userFuncs.login(options.userName, options.password);
     if (response?.success) setUser(response.user);
     else onCancelRef.current(response?.errorMessage);
   };
@@ -66,7 +67,7 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
    * create a new user
    */
   const create = async (options: Omit<User, "cardSets">) => {
-    let response = await USER_API.createUser({
+    let response = await userFuncs.createUser({
       ...options,
       cardSets: [],
     });
@@ -78,7 +79,7 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
    * update the current user
    */
   const updateUser = async (user: User) => {
-    await USER_API.updateUser(user);
+    await userFuncs.updateUser(user);
     setUser(user);
   };
 
@@ -86,7 +87,7 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
    * get a specific user
    */
   const get = async (options: { userName: string }) => {
-    let user = await USER_API.getUser(options.userName);
+    let user = await userFuncs.getUser(options.userName);
     return user;
   };
 
@@ -94,7 +95,7 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
    * delete a specific user
    */
   const deleteUser = async (options: { userName: string }) => {
-    await USER_API.deleteUser(options.userName);
+    await userFuncs.deleteUser(options.userName);
   };
 
   const value = {

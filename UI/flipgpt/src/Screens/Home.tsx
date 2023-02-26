@@ -44,6 +44,14 @@ const Home = () => {
 
     if (!response) return setLoading(false);
 
+    if (response.flashCards.length == 0) {
+      Log.log(`Error Server Returned empty list`);
+      return setLoading(false);
+    }
+
+    /**
+     * want to remove
+     */
     user.cardSets.push({
       setId: Math.random() * 100,
       title: input,
@@ -99,11 +107,11 @@ const Home = () => {
       className="flex flex-center flex-col"
     >
       {selectedTopic == "Topic" ? (
-        <h1 className="f-white">
+        <h1 className="f-white fs-45">
           What <span className="f-orange">topic</span> would you like to study?
         </h1>
       ) : (
-        <h1 className="f-white">
+        <h1 className="f-white fs-45">
           Make cards out of your <span className="f-orange">personal</span>{" "}
           notes
         </h1>
